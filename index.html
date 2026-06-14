@@ -337,65 +337,69 @@
 
         </div>
         <!-- ================= ROW 4: GROWTH & WEALTH ================= -->
-<div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
+<div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
             
-            <div class="card-box" style="padding: 8px; text-align: left; display: flex; flex-direction: column; min-height: 200px; box-sizing: border-box; overflow: hidden;">
-                <span style="font-size: 10px; font-weight: bold; display: block; margin-bottom: 6px; white-space: nowrap;">GROWTH 🚀</span>
+            <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 250px; box-sizing: border-box; overflow: hidden;">
+                <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 15px; width: 100%; white-space: nowrap;">GROWTH 🚀</span>
                 
-                <div class="radar-container" style="position: relative; flex-grow: 1; border: 1px solid #444; background-color: #0b0d10; overflow: hidden; display: flex; justify-content: center; align-items: center;">
-                    <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed #333;"></div>
-                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed #333;"></div>
-                    
-                    <div style="
-                        width: 70px;
-                        height: 70px;
-                        background: rgba(0, 240, 255, 0.15);
-                        border: 2px solid #00f0ff;
-                        border-radius: 50%;
-                        z-index: 1;
-                    "></div>
-                    
-                    <div style="position: absolute; top: 2px; font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap;">HEALTH</div>
-                    <div style="position: absolute; right: 2px; font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap;">MENTAL</div>
-                    <div style="position: absolute; bottom: 2px; font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap;">SOCIAL</div>
-                    <div style="position: absolute; left: 2px; font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap;">KNOWL.</div>
+                <div class="radar-wrapper" style="position: relative; width: 100%; flex-grow: 1; display: flex; justify-content: center; align-items: center;">
+                    <div class="radar-container" style="position: relative; width: 110px; height: 110px; background: transparent; display: flex; justify-content: center; align-items: center; border: none;">
+                        
+                        <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed #444; z-index: 0;"></div>
+                        <div style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed #444; z-index: 0;"></div>
+                        
+                        <div style="
+                            width: 65px;
+                            height: 65px;
+                            border: 2px solid #00f0ff;
+                            border-radius: 50%;
+                            z-index: 2;
+                            background: transparent;
+                            box-sizing: border-box;
+                        "></div>
+                        
+                        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap; z-index: 3;">HEALTH</div>
+                        <div style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap; z-index: 3;">MENTAL</div>
+                        <div style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap; z-index: 3;">SOCIAL</div>
+                        <div style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); font-size: 7.5px; color: #fff; font-weight: bold; white-space: nowrap; z-index: 3;">KNOWL.</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card-box" style="padding: 8px; display: flex; flex-direction: column; min-height: 200px; box-sizing: border-box; overflow: hidden;">
-                <span style="font-size: 10px; font-weight: bold; display: block; text-align: left; margin-bottom: 6px; white-space: nowrap;">WEALTH 💰</span>
+            <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 250px; box-sizing: border-box; overflow: hidden;">
+                <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 12px; width: 100%; white-space: nowrap;">WEALTH 💰</span>
                 
-                <div class="wealth-list" style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1; justify-content: center;">
+                <div class="wealth-list" style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; justify-content: center; width: 100%;">
                     
-                    <div style="text-align: left;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 1px; white-space: nowrap;">💵 Income</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 3px;">
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8.5px; white-space: nowrap;">$281</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8px; white-space: nowrap; color: #aaa; border-color: #333;">Rp4.5M</div>
+                    <div style="text-align: left; width: 100%;">
+                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💵 Income</span>
+                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$281</div>
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp4.5M</div>
                         </div>
                     </div>
 
-                    <div style="text-align: left;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 1px; white-space: nowrap;">💸 Expense</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 3px;">
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8.5px; white-space: nowrap;">$73</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8px; white-space: nowrap; color: #aaa; border-color: #333;">Rp1.2M</div>
+                    <div style="text-align: left; width: 100%;">
+                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💸 Expense</span>
+                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$73</div>
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp1.2M</div>
                         </div>
                     </div>
 
-                    <div style="text-align: left;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 1px; white-space: nowrap;">🏦 Saving</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 3px;">
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8.5px; white-space: nowrap;">$28</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8px; white-space: nowrap; color: #aaa; border-color: #333;">Rp450K</div>
+                    <div style="text-align: left; width: 100%;">
+                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">🏦 Saving</span>
+                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$28</div>
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp450K</div>
                         </div>
                     </div>
 
-                    <div style="text-align: left;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 1px; white-space: nowrap;">💳 Spendable</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 3px;">
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8.5px; white-space: nowrap; border-color: #00f0ff; color: #00f0ff;">$180</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 3px 2px; font-size: 8px; white-space: nowrap; border-color: #00f0ff; color: #00f0ff;">Rp2.8M</div>
+                    <div style="text-align: left; width: 100%;">
+                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💳 Spendable</span>
+                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">$180</div>
+                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">Rp2.8M</div>
                         </div>
                     </div>
 
