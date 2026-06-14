@@ -1,209 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RPG Life Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Life Dashboard</title>
+    <style>
+        /* --- RESET & GLOBAL STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace; /* Menggunakan font monospace agar terasa aura game/data */
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #0f1117;
-    color: white;
-}
+        body {
+            background-color: #0d0f12;
+            color: #ffffff;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+        }
 
-.header {
-    padding: 20px;
-    text-align: center;
-    background: #151a24;
-}
+        /* Container Utama agar lebar semua kotak sejajar dan konsisten di HP */
+        .dashboard-container {
+            width: 100%;
+            max-width: 450px; /* Batas lebar layar HP nyaman */
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Jarak antar baris kotak */
+        }
 
-.card {
-    background: #1c2230;
-    margin: 15px;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
+        /* Gaya Garis Kotak Utama (Mengikuti Garis Putih di Gambar 31371.jpg) */
+        .card-box {
+            border: 2px solid #ffffff;
+            background-color: #111418;
+            padding: 12px;
+            text-align: center;
+        }
 
-.bar {
-    width: 100%;
-    height: 10px;
-    background: #333;
-    border-radius: 10px;
-    overflow: hidden;
-}
+        /* --- ROW 1: HEADER STATS (3 Kolom) --- */
+        .header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1.5fr; /* Pembagian rasio kolom */
+            gap: 8px;
+        }
 
-.bar-fill {
-    width: 72%;
-    height: 100%;
-    background: linear-gradient(90deg, #00f5ff, #7c4dff);
-}
+        .stat-text {
+            font-size: 11px;
+            line-height: 1.5;
+        }
 
-.quest {
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
-}
+        /* --- ROW 2: DONUT CHARTS (2 Kolom) --- */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
 
-.badge {
-    padding: 3px 8px;
-    border-radius: 8px;
-    background: #2a3347;
-    font-size: 12px;
-}
+        /* Replika Lingkaran Donat Sederhana dengan CSS */
+        .donut-placeholder {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 15px solid #2a2514; /* Warna dasar kecoklatan */
+            border-top: 15px solid #00f0ff; /* Sektor cyan aktif */
+            margin: 10px auto;
+            position: relative;
+        }
 
-.bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    background: #151a24;
-}
+        .chart-label {
+            font-size: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #aaa;
+        }
 
-.tab {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-}
+        /* --- ROW 3: STATUS BARS (4 Kolom) --- */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
 
-.section-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-.card {
-  background: #1b2230;
-  padding: 20px;
-  border-radius: 12px;
-  color: white;
-  width: 100%;
-}
+        .status-item {
+            border: 1px solid #ffffff;
+            padding: 6px 2px;
+            font-size: 9px;
+        }
 
-/* TITLE */
-.title {
-  margin-bottom: 4px; /* bikin garis dekat */
-  font-size: 20px;
-  font-weight: bold;
-}
+        /* --- ROW 4: GROWTH & WEALTH (2 Kolom Besar) --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 8px;
+        }
 
-/* GARIS FULL WIDTH */
-.divider {
-  width: 100%;              /* dari kiri ke kanan */
-  height: 2px;
-  background: #00d9ff;      /* cyan */
-  margin: 4px 0 14px 0;     /* dekat ke title */
-  border-radius: 0;         /* tanpa glow / blur */
-  box-shadow: none;         /* pastikan gak ada efek */
-}
+        /* Simulasi Grafik Radar Cross */
+        .radar-container {
+            position: relative;
+            height: 180px;
+            border: 1px solid #ffffff;
+            margin-top: 10px;
+        }
 
-/* QUEST ROW */
-.quest {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-}
+        .axis-h {
+            position: absolute;
+            top: 50%; left: 5%; right: 5%;
+            border-top: 1px dashed #555;
+        }
 
-.quest span {
-  color: #00d9ff;
+        .axis-v {
+            position: absolute;
+            left: 50%; top: 5%; bottom: 5%;
+            border-left: 1px dashed #555;
+        }
 
-}
-</style>
+        /* Bentuk kelopak biru di tengah grafik */
+        .radar-shape {
+            position: absolute;
+            top: 15%; left: 35%; right: 35%; bottom: 15%;
+            border: 2px solid #0026ff;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+
+        .radar-label {
+            position: absolute;
+            font-size: 8px;
+            color: #ccc;
+        }
+
+        /* --- WEALTH LIST --- */
+        .wealth-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .wealth-item {
+            font-size: 10px;
+        }
+
+        .wealth-value-box {
+            border: 1px solid #ffffff;
+            padding: 4px;
+            text-align: center;
+            margin-top: 2px;
+            font-size: 11px;
+        }
+
+        /* --- PROGRESS BAR GLOBAL ACCENT --- */
+        .mini-progress {
+            background: #222;
+            height: 6px;
+            margin-top: 4px;
+            border: 1px solid #555;
+        }
+        .mini-progress-fill {
+            background: #fff;
+            width: 30%;
+            height: 100%;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-    <h2>🐣 Moch Attarsyah - Level 12</h2>
-    <div class="bar">
-        <div class="bar-fill"></div>
+    <div class="dashboard-container">
+
+        <!-- ================= ROW 1: HEADER STATS ================= -->
+        <div class="header-grid">
+            <div class="card-box stat-text">
+                TOTAL EXP:<br><strong>240</strong><br><br>QUESTS:<br><strong>2</strong>
+            </div>
+            <div class="card-box stat-text">
+                <span style="font-size: 9px; color:#aaa;">MOCH ATTARSYAH</span><br><br>
+                🐣 NOVICE<br>LEVEL 1
+            </div>
+            <div class="card-box stat-text">
+                240 / 1000 EXP
+                <div class="mini-progress"><div class="mini-progress-fill" style="width: 24%;"></div></div>
+                <br>
+                <span style="font-size: 9px; color:#aaa;">760 EXP TO NEXT LEVEL</span>
+            </div>
+        </div>
+
+        <!-- ================= ROW 2: CHARTS (DAILY & WEEKLY) ================= -->
+        <div class="card-box">
+            <div class="charts-grid">
+                <div>
+                    <div class="chart-label"><span>REMAINING</span><span>DAILY</span></div>
+                    <div class="donut-placeholder"></div>
+                    <div class="chart-label"><span>88.9%</span><span>11.1%</span></div>
+                </div>
+                <div>
+                    <div class="chart-label"><span>REMAINING</span><span>WEEKLY</span></div>
+                    <div class="donut-placeholder" style="border-top-color: #00f0ff;"></div>
+                    <div class="chart-label"><span>89.2%</span><span>10.8%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ROW 3: STATUS BARS ================= -->
+        <div class="status-grid">
+            <div class="card-box status-item">
+                HEALTH ❤️<br>LVL 1<br>120/1000
+                <div class="mini-progress"><div class="mini-progress-fill" style="width: 12%;"></div></div>
+            </div>
+            <div class="card-box status-item">
+                MENTAL 🧠<br>LVL 1<br>0/1000
+                <div class="mini-progress"><div class="mini-progress-fill" style="width: 0%;"></div></div>
+            </div>
+            <div class="card-box status-item">
+                SOCIAL 👥<br>LVL 1<br>120/1000
+                <div class="mini-progress"><div class="mini-progress-fill" style="width: 12%;"></div></div>
+            </div>
+            <div class="card-box status-item">
+                KNOWLEDGE 📝<br>LVL 1<br>0/1000
+                <div class="mini-progress"><div class="mini-progress-fill" style="width: 0%;"></div></div>
+            </div>
+        </div>
+
+        <!-- ================= ROW 4: GROWTH & WEALTH ================= -->
+        <div class="main-grid">
+            <!-- Growth (Grafik Radar) -->
+            <div class="card-box" style="text-align: left;">
+                <span style="font-size: 12px;">GROWTH 🚀</span>
+                <div class="radar-container">
+                    <div class="axis-h"></div>
+                    <div class="axis-v"></div>
+                    <div class="radar-shape"></div>
+                    
+                    <!-- Label posisi grafik -->
+                    <div class="radar-label" style="top:2%; left:38%;">HEALTH</div>
+                    <div class="radar-label" style="bottom:2%; left:40%;">SOCIAL</div>
+                    <div class="radar-label" style="top:48%; left:2%;">KNOWL.</div>
+                    <div class="radar-label" style="top:48%; right:2%;">MENTAL</div>
+                </div>
+            </div>
+
+            <!-- Wealth (Keuangan) -->
+            <div class="card-box">
+                <span style="font-size: 12px; display:block; margin-bottom:10px;">WEALTH 💰</span>
+                <div class="wealth-list">
+                    <div class="wealth-item">
+                        💵 Income
+                        <div class="wealth-value-box">$281</div>
+                    </div>
+                    <div class="wealth-item">
+                        💸 Expense
+                        <div class="wealth-value-box">$73</div>
+                    </div>
+                    <div class="wealth-item">
+                        🏦 Saving
+                        <div class="wealth-value-box">$28</div>
+                    </div>
+                    <div class="wealth-item">
+                        💳 Spendable
+                        <div class="wealth-value-box">$180</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <p>EXP 72%</p>
-</div>
-
-<div class="card">
-    <h3>⚔️ Daily Quest</h3>
-    <div class="divider"></div>
-
-    <div class="quest">
-        <span>Langkah Petualang 7500</span>
-        <span class="badge">+120 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Istirahat Legenda (7 Jam)</span>
-        <span class="badge">+100 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Langkah Petualang 5000</span>
-        <span class="badge">+80 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Protein Warrior Mode</span>
-        <span class="badge">+70 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Makan Siang Bergizi (Nutrient Raid)</span>
-        <span class="badge">+60 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Hidrasi Hero (2 Liter)</span>
-        <span class="badge">+50 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Sarapan Sehat (Fruit of Awakening)</span>
-        <span class="badge">+40 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Sayur Penyembuh (Healing Boost)</span>
-        <span class="badge">+30 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Mandi Pagi</span>
-        <span class="badge">+25 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Mandi Sore</span>
-        <span class="badge">+25 EXP</span>
-    </div>
-
-    <div class="quest">
-        <span>Mandi Sore</span>
-        <span class="badge">+25 EXP</span>
-    </div>
-
-</div>
-
-<div class="card">
-    <h3>💰 Wealth</h3>
-    <p>Income: Rp 5.000.000</p>
-    <p>Expense: Rp 2.500.000</p>
-    <p>Saving: Rp 2.500.000</p>
-</div>
-
-<div class="card">
-    <h3>📊 Stats</h3>
-    <p>🧠 Knowledge: ████████░</p>
-    <p>⚔️ Strength: ██████░░░</p>
-    <p>❤️ Mental: ███████░░</p>
-</div>
-
-<div class="bottom">
-    <div class="tab">Home</div>
-    <div class="tab">Quest</div>
-    <div class="tab">Wealth</div>
-    <div class="tab">Stats</div>
-</div>
 
 </body>
 </html>
