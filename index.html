@@ -292,26 +292,50 @@
             </div>
         </div>
 
-        <!-- ================= ROW 3: STATUS BARS ================= -->
-        <div class="status-grid">
-            <div class="card-box status-item">
-                HEALTH ❤️<br>LVL 1<br>120/1000
-                <div class="mini-progress"><div class="mini-progress-fill" style="width: 12%;"></div></div>
+<!-- ================= ROW 3: STATUS BARS (OPTIMIZED 4 COLUMNS) ================= -->
+        <div class="status-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+            
+            <!-- HEALTH -->
+            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
+                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
+                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                    <div class="mini-progress-fill" style="width: 12%;"></div>
+                </div>
             </div>
-            <div class="card-box status-item">
-                MENTAL 🧠<br>LVL 1<br>0/1000
-                <div class="mini-progress"><div class="mini-progress-fill" style="width: 0%;"></div></div>
-            </div>
-            <div class="card-box status-item">
-                SOCIAL 👥<br>LVL 1<br>120/1000
-                <div class="mini-progress"><div class="mini-progress-fill" style="width: 12%;"></div></div>
-            </div>
-            <div class="card-box status-item">
-                KNOWLEDGE 📝<br>LVL 1<br>0/1000
-                <div class="mini-progress"><div class="mini-progress-fill" style="width: 0%;"></div></div>
-            </div>
-        </div>
 
+            <!-- MENTAL -->
+            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
+                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
+                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                    <div class="mini-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
+                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
+                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                    <div class="mini-progress-fill" style="width: 12%;"></div>
+                </div>
+            </div>
+
+            <!-- KNOWLEDGE -->
+            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
+                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
+                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                    <div class="mini-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+        </div>
         <!-- ================= ROW 4: GROWTH & WEALTH ================= -->
         <div class="main-grid">
             <!-- Growth (Grafik Radar) -->
