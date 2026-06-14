@@ -183,13 +183,22 @@
         <span style="color: #00f0ff; font-weight: bold;">Level 1</span>
     </div>
 </div>
-            <div class="card-box stat-text">
-                240 / 1000 EXP
-                <div class="mini-progress"><div class="mini-progress-fill" style="width: 24%;"></div></div>
-                <br>
-                <span style="font-size: 9px; color:#aaa;">760 EXP TO NEXT LEVEL</span>
-            </div>
-        </div>
+<div class="card-box stat-text" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <!-- Teks EXP Atas (Dikecilkan sedikit & dikunci agar tidak wrap) -->
+    <div style="font-size: 9px; white-space: nowrap; font-weight: bold;">
+        240 / 1000 EXP
+    </div>
+    
+    <!-- Progress Bar (Lebar disesuaikan agar proporsional di tengah) -->
+    <div class="mini-progress" style="width: 85%; margin: 6px 0;">
+        <div class="mini-progress-fill" style="width: 24%;"></div>
+    </div>
+    
+    <!-- Teks Info Bawah (Dikecilkan ke 7.5px agar muat dalam satu baris) -->
+    <div style="font-size: 7.5px; color: #aaa; white-space: nowrap;">
+        760 EXP TO NEXT LEVEL
+    </div>
+</div>
 
         <!-- ================= ROW 2: CHARTS (DAILY & WEEKLY) ================= -->
         <div class="card-box">
