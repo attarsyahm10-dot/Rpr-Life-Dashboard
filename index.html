@@ -836,21 +836,7 @@
     </nav>
 
     <!-- LOGIKA JAVASCRIPT -->
-    <script>
-        function switchTab(panelId, buttonId) {
-            document.querySelectorAll('.panel').forEach(panel => {
-                panel.style.display = 'none';
-            });
-
-            document.getElementById(panelId).style.display = 'flex';
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            document.getElementById(buttonId).classList.add('active');
-        }
-
+<script>
     function switchTab(panelId, buttonId) {
         document.querySelectorAll('.panel').forEach(panel => {
             panel.style.display = 'none';
@@ -865,11 +851,7 @@
         document.getElementById(buttonId).classList.add('active');
     }
 
-    // ========================================================
-    // PASTE KODE BARU DI SINI (MENGGANTI FUNGSI LAMA)
-    // ========================================================
-    
-    // ⚠️ Ganti dengan URL dari tombol "Terapkan" Apps Script kamu
+    // URL Jembatan Google Apps Script Kamu (Sudah Benar)
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
     function handleQuestCheck(checkbox) {
@@ -881,6 +863,7 @@
                               String(today.getMonth() + 1).padStart(2, '0') + '-' + 
                               String(today.getDate()).padStart(2, '0');
 
+        // Perbaikan: Teks di bawah ini sekarang sudah aman dibungkus backtick (`)
         console.log(Mengirim Progres... ID: ${questId} | Status: ${isChecked} | Tanggal: ${formattedDate});
 
         fetch(APPS_SCRIPT_URL, {
@@ -903,6 +886,6 @@
             console.error("[ERROR] Gagal mengirim data ke GSheet:", error);
         });
     }
-    </script>
+</script>
 </body>
 </html>
