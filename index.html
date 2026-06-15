@@ -851,11 +851,58 @@
             document.getElementById(buttonId).classList.add('active');
         }
 
-        function handleQuestCheck(checkbox) {
-            if(checkbox.checked) {
-                console.log("Quest " + checkbox.id + " Selesai!");
-            }
-        }
+    function switchTab(panelId, buttonId) {
+        document.querySelectorAll('.panel').forEach(panel => {
+            panel.style.display = 'none';
+        });
+
+        document.getElementById(panelId).style.display = 'flex';
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        document.getElementById(buttonId).classList.add('active');
+    }
+
+    // ========================================================
+    // PASTE KODE BARU DI SINI (MENGGANTI FUNGSI LAMA)
+    // ========================================================
+    
+    // ⚠️ Ganti dengan URL dari tombol "Terapkan" Apps Script kamu
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
+
+    function handleQuestCheck(checkbox) {
+        const questId = checkbox.id;
+        const isChecked = checkbox.checked; 
+        
+        const today = new Date();
+        const formattedDate = today.getFullYear() + '-' + 
+                              String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                              String(today.getDate()).padStart(2, '0');
+
+        console.log(Mengirim Progres... ID: ${questId} | Status: ${isChecked} | Tanggal: ${formattedDate});
+
+        fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: "updateQuest",
+                questId: questId,
+                status: isChecked,
+                date: formattedDate
+            })
+        })
+        .then(() => {
+            console.log([SUKSES] ID ${questId} tersinkronisasi dengan GSheet!);
+        })
+        .catch(error => {
+            console.error("[ERROR] Gagal mengirim data ke GSheet:", error);
+        });
+    }
     </script>
 </body>
 </html>
