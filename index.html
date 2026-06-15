@@ -17,6 +17,7 @@
             background-color: #0d0f12;
             color: #ffffff;
             padding: 12px;
+            padding-bottom: 80px; /* Ditambahkan agar konten tidak tertutup oleh menu navigasi bawah */
             display: flex;
             justify-content: center;
         }
@@ -161,258 +162,383 @@
             width: 30%;
             height: 100%;
         }
+
+        /* ======================================================== */
+        /* 🛠️ FITUR BARU: CSS NAVIGASI & SISTEM SPA PANEL (AMAN)  */
+        /* ======================================================== */
+        
+        /* Mengatur agar panel tersembunyi secara default */
+        .panel {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Memastikan panel dashboard/home langsung terbuka di awal */
+        #dashboard-panel {
+            display: flex;
+        }
+
+        /* Pembungkus navigasi menu bawah ala game */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 450px;
+            background-color: #111418;
+            border-top: 2px solid #ffffff;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            z-index: 999;
+        }
+
+        /* Desain tombol menu navigasi agar match dengan UI */
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #666; /* Warna saat tidak aktif */
+            padding: 14px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        /* Efek penanda tombol yang sedang aktif */
+        .nav-btn.active {
+            color: #00f0ff; /* Cyan menyala khas UI kamu */
+            text-shadow: 0 0 5px #00f0ff;
+            background-color: #161b22;
+        }
+
+        /* Tambahan styling checklist item sederhana agar seirama */
+        .quest-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            text-align: left;
+            padding: 4px 0;
+        }
+
+        .quest-item input[type="checkbox"] {
+            accent-color: #00f0ff;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
 
-        <!-- ================= ROW 1: HEADER STATS ================= -->
-        <!-- ================= ROW 1: HEADER STATS (PERBAIKAN TOTAL) ================= -->
-        <div class="header-grid">
-            
-            <!-- KOTAK 1: TOTAL EXP & QUESTS -->
-            <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
-                <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">TOTAL EXP</div>
-                <div style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">240</div>
-                <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">QUESTS</div>
-                <div style="font-size: 12px; font-weight: bold;">2</div>
-            </div>
-
-            <!-- KOTAK 2: PROFIL ANAK AYAM -->
-            <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
-                <span style="font-size: 22px; margin-bottom: 2px;">🐣</span>
-                <div style="font-size: 8px; white-space: nowrap; line-height: 1.2; text-align: center; width: 100%;">
-                    <strong>Moch Attarsyah</strong><br>
-                    <span style="color: #aaa; font-size: 7.5px;">Rank - Novice</span><br>
-                    <span style="color: #00f0ff; font-weight: bold; font-size: 7.5px;">Level 1</span>
+        <div id="wealth-panel" class="panel">
+            <div class="card-box" style="padding: 16px 8px;">
+                <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
+                    [ WEALTH DATABASE LOG ]
+                </div>
+                <div style="font-size: 10px; color: #aaa; text-align: left; line-height: 1.6;">
+                    • Tempat input transaksi harian akan ditaruh di sini.<br>
+                    • Menghubungkan mutasi keuangan langsung ke Google Sheet.
                 </div>
             </div>
-
-            <!-- KOTAK 3: BAR EXP -->
-            <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
-                <div style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
-                    240 / 1000 EXP
-                </div>
-                <div class="mini-progress" style="width: 90%; margin: 6px auto; height: 6px;">
-                    <div class="mini-progress-fill" style="width: 24%;"></div>
-                </div>
-                <div style="font-size: 7px; color: #aaa; white-space: nowrap; text-align: center;">
-                    760 EXP TO NEXT LEVEL
-                </div>
-            </div>
-
         </div>
 
-        <!-- ================= ROW 2: CHARTS (DAILY & WEEKLY) ================= -->
-        <!-- ================= ROW 2: CHARTS (DAILY & WEEKLY) REVISED ================= -->
-        <div class="card-box" style="padding: 16px 8px;">
-            <div style="font-size: 11px; letter-spacing: 2px; color: #aaa; margin-bottom: 15px; font-weight: bold;">
-                [ DAILY & WEEKLY GOALS ]
-            </div>
+
+        <div id="dashboard-panel" class="panel">
             
-            <div class="charts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="header-grid">
                 
-                <!-- DONUT KIRI: DAILY -->
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <div style="font-size: 9px; font-weight: bold; color: #fff;">DAILY EXP GOAL</div>
-                    <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 40% )</div>
+                <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
+                    <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">TOTAL EXP</div>
+                    <div style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">240</div>
+                    <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">QUESTS</div>
+                    <div style="font-size: 12px; font-weight: bold;">2</div>
+                </div>
+
+                <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
+                    <span style="font-size: 22px; margin-bottom: 2px;">🐣</span>
+                    <div style="font-size: 8px; white-space: nowrap; line-height: 1.2; text-align: center; width: 100%;">
+                        <strong>Moch Attarsyah</strong><br>
+                        <span style="color: #aaa; font-size: 7.5px;">Rank - Novice</span><br>
+                        <span style="color: #00f0ff; font-weight: bold; font-size: 7.5px;">Level 1</span>
+                    </div>
+                </div>
+
+                <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
+                    <div style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
+                        240 / 1000 EXP
+                    </div>
+                    <div class="mini-progress" style="width: 90%; margin: 6px auto; height: 6px;">
+                        <div class="mini-progress-fill" style="width: 24%;"></div>
+                    </div>
+                    <div style="font-size: 7px; color: #aaa; white-space: nowrap; text-align: center;">
+                        760 EXP TO NEXT LEVEL
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-box" style="padding: 16px 8px;">
+                <div style="font-size: 11px; letter-spacing: 2px; color: #aaa; margin-bottom: 15px; font-weight: bold;">
+                    [ DAILY & WEEKLY GOALS ]
+                </div>
+                
+                <div class="charts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     
-                    <!-- Lingkaran Donat Daily (40% terisi) -->
-                    <div style="
-                        width: 90px; 
-                        height: 90px; 
-                        border-radius: 50%; 
-                        background: conic-gradient(#00f0ff 0% 40%, #2a2514 40% 100%); 
-                        margin: 12px auto; 
-                        display: flex; 
-                        justify-content: center; 
-                        align-items: center;
-                    ">
-                        <!-- Lubang Tengah Donat untuk Teks -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size: 9px; font-weight: bold; color: #fff;">DAILY EXP GOAL</div>
+                        <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 40% )</div>
+                        
                         <div style="
-                            width: 62px; 
-                            height: 62px; 
+                            width: 90px; 
+                            height: 90px; 
                             border-radius: 50%; 
-                            background-color: #111418; 
+                            background: conic-gradient(#00f0ff 0% 40%, #2a2514 40% 100%); 
+                            margin: 12px auto; 
                             display: flex; 
-                            flex-direction: column; 
                             justify-content: center; 
-                            align-items: center; 
-                            font-size: 10px; 
-                            line-height: 1.3;
+                            align-items: center;
                         ">
-                            <span style="font-weight: bold; color: #fff;">40</span>
-                            <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
-                            <span style="color: #aaa; font-size: 9px;">100</span>
+                            <div style="
+                                width: 62px; 
+                                height: 62px; 
+                                border-radius: 50%; 
+                                background-color: #111418; 
+                                display: flex; 
+                                flex-direction: column; 
+                                justify-content: center; 
+                                align-items: center; 
+                                font-size: 10px; 
+                                line-height: 1.3;
+                            ">
+                                <span style="font-weight: bold; color: #fff;">40</span>
+                                <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
+                                <span style="color: #aaa; font-size: 9px;">100</span>
+                            </div>
                         </div>
+                        
+                        <div style="font-size: 8px; color: #aaa; white-space: nowrap;">60 EXP REMAINING</div>
                     </div>
-                    
-                    <div style="font-size: 8px; color: #aaa; white-space: nowrap;">60 EXP REMAINING</div>
-                </div>
 
-                <!-- DONUT KANAN: WEEKLY -->
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <div style="font-size: 9px; font-weight: bold; color: #fff;">WEEKLY EXP GOAL</div>
-                    <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 50% )</div>
-                    
-                    <!-- Lingkaran Donat Weekly (50% terisi) -->
-                    <div style="
-                        width: 90px; 
-                        height: 90px; 
-                        border-radius: 50%; 
-                        background: conic-gradient(#00f0ff 0% 50%, #2a2514 50% 100%); 
-                        margin: 12px auto; 
-                        display: flex; 
-                        justify-content: center; 
-                        align-items: center;
-                    ">
-                        <!-- Lubang Tengah Donat untuk Teks -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size: 9px; font-weight: bold; color: #fff;">WEEKLY EXP GOAL</div>
+                        <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 50% )</div>
+                        
                         <div style="
-                            width: 62px; 
-                            height: 62px; 
+                            width: 90px; 
+                            height: 90px; 
                             border-radius: 50%; 
-                            background-color: #111418; 
+                            background: conic-gradient(#00f0ff 0% 50%, #2a2514 50% 100%); 
+                            margin: 12px auto; 
                             display: flex; 
-                            flex-direction: column; 
                             justify-content: center; 
-                            align-items: center; 
-                            font-size: 10px; 
-                            line-height: 1.3;
+                            align-items: center;
                         ">
-                            <span style="font-weight: bold; color: #fff;">350</span>
-                            <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
-                            <span style="color: #aaa; font-size: 9px;">700</span>
+                            <div style="
+                                width: 62px; 
+                                height: 62px; 
+                                border-radius: 50%; 
+                                background-color: #111418; 
+                                display: flex; 
+                                flex-direction: column; 
+                                justify-content: center; 
+                                align-items: center; 
+                                font-size: 10px; 
+                                line-height: 1.3;
+                            ">
+                                <span style="font-weight: bold; color: #fff;">350</span>
+                                <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
+                                <span style="color: #aaa; font-size: 9px;">700</span>
+                            </div>
                         </div>
+                        
+                        <div style="font-size: 8px; color: #aaa; white-space: nowrap;">350 EXP REMAINING</div>
                     </div>
-                    
-                    <div style="font-size: 8px; color: #aaa; white-space: nowrap;">350 EXP REMAINING</div>
-                </div>
 
-            </div>
-        </div>
-
-<!-- ================= ROW 3: STATUS BARS (OPTIMIZED 4 COLUMNS) ================= -->
-        <div class="status-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
-            
-            <!-- HEALTH -->
-            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
-                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
-                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                    <div class="mini-progress-fill" style="width: 12%;"></div>
                 </div>
             </div>
 
-            <!-- MENTAL -->
-            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
-                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
-                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                    <div class="mini-progress-fill" style="width: 0%;"></div>
-                </div>
-            </div>
-
-            <!-- SOCIAL -->
-            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
-                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
-                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                    <div class="mini-progress-fill" style="width: 12%;"></div>
-                </div>
-            </div>
-
-            <!-- KNOWLEDGE -->
-            <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
-                <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
-                <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                    <div class="mini-progress-fill" style="width: 0%;"></div>
-                </div>
-            </div>
-
-        </div>
-        <!-- ================= ROW 4: GROWTH & WEALTH ================= -->
-<div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
-            
-            <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
-                <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 15px; width: 100%; white-space: nowrap;">GROWTH 🚀</span>
+            <div class="status-grid">
                 
-                <div class="radar-wrapper" style="position: relative; width: 100%; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 150px;">
-                    <div class="radar-container" style="position: relative; width: 100px; height: 100px; background: transparent; border: none; display: flex; justify-content: center; align-items: center;">
-                        
-                        <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed #444; transform: translateY(-50%); z-index: 0;"></div>
-                        <div style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed #444; transform: translateX(-50%); z-index: 0;"></div>
-                        
-                        <div style="
-                            position: absolute;
-                            width: 65px;
-                            height: 65px;
-                            border: 2px solid #00f0ff;
-                            border-radius: 50%;
-                            z-index: 2;
-                            background: transparent;
-                            box-sizing: border-box;
-                        "></div>
-                        
-                        <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">❤️</div>
-                        <div style="position: absolute; right: -16px; top: 50%; transform: translateY(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">🧠</div>
-                        <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">👥</div>
-                        <div style="position: absolute; left: -16px; top: 50%; transform: translateY(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">📝</div>
+                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
+                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
+                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                        <div class="mini-progress-fill" style="width: 12%;"></div>
                     </div>
                 </div>
+
+                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
+                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
+                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                        <div class="mini-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
+                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
+                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                        <div class="mini-progress-fill" style="width: 12%;"></div>
+                    </div>
+                </div>
+
+                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
+                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
+                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
+                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
+                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
+                        <div class="mini-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
-                <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 12px; width: 100%; white-space: nowrap;">WEALTH 💰</span>
+            <div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
                 
-                <div class="wealth-list" style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+                <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
+                    <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 15px; width: 100%; white-space: nowrap;">GROWTH 🚀</span>
                     
-                    <div style="text-align: left; width: 100%;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💵 Income</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$281</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp4.5M</div>
+                    <div class="radar-wrapper" style="position: relative; width: 100%; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 150px;">
+                        <div class="radar-container" style="position: relative; width: 100px; height: 100px; background: transparent; border: none; display: flex; justify-content: center; align-items: center;">
+                            
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed #444; transform: translateY(-50%); z-index: 0;"></div>
+                            <div style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed #444; transform: translateX(-50%); z-index: 0;"></div>
+                            
+                            <div style="
+                                position: absolute;
+                                width: 65px;
+                                height: 65px;
+                                border: 2px solid #00f0ff;
+                                border-radius: 50%;
+                                z-index: 2;
+                                background: transparent;
+                                box-sizing: border-box;
+                            "></div>
+                            
+                            <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">❤️</div>
+                            <div style="position: absolute; right: -16px; top: 50%; transform: translateY(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">🧠</div>
+                            <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">👥</div>
+                            <div style="position: absolute; left: -16px; top: 50%; transform: translateY(-50%); font-size: 11px; white-space: nowrap; z-index: 3;">📝</div>
                         </div>
                     </div>
+                </div>
 
-                    <div style="text-align: left; width: 100%;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💸 Expense</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$73</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp1.2M</div>
+                <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
+                    <span style="font-size: 10px; font-weight: bold; display: block; text-align: center; margin-bottom: 12px; width: 100%; white-space: nowrap;">WEALTH 💰</span>
+                    
+                    <div class="wealth-list" style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+                        
+                        <div style="text-align: left; width: 100%;">
+                            <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💵 Income</span>
+                            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$281</div>
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp4.5M</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="text-align: left; width: 100%;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">🏦 Saving</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$28</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp450K</div>
+                        <div style="text-align: left; width: 100%;">
+                            <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💸 Expense</span>
+                            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$73</div>
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp1.2M</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="text-align: left; width: 100%;">
-                        <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💳 Spendable</span>
-                        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">$180</div>
-                            <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">Rp2.8M</div>
+                        <div style="text-align: left; width: 100%;">
+                            <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">🏦 Saving</span>
+                            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$28</div>
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp450K</div>
+                            </div>
                         </div>
-                    </div>
 
+                        <div style="text-align: left; width: 100%;">
+                            <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💳 Spendable</span>
+                            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">$180</div>
+                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">Rp2.8M</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; margin-bottom: 15px; width: 100%;">
+                <p style="font-family: monospace; font-size: 9px; color: #666; letter-spacing: 1px; margin: 0; text-transform: uppercase;">
+                    🛠️ This Area is Under Development 🛠️
+                </p>
+            </div>
+            
+        </div> <div id="quests-panel" class="panel">
+            <div class="card-box" style="padding: 16px 8px;">
+                <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
+                    [ ACTIVE QUEST LOG ]
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; padding: 5px;">
+                    <label class="quest-item">
+                        <input type="checkbox" id="q1" onchange="handleQuestCheck(this)">
+                        <span>Code Clean-up Pro (+20 EXP)</span>
+                    </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="q2" onchange="handleQuestCheck(this)">
+                        <span>Workout 30 Menit (+30 EXP)</span>
+                    </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="q3" onchange="handleQuestCheck(this)">
+                        <span>Push Project Baru (+50 EXP)</span>
+                    </label>
                 </div>
             </div>
-
-        </div>
-        <div style="text-align: center; margin-top: 25px; margin-bottom: 15px; width: 100%;">
-            <p style="font-family: monospace; font-size: 9px; color: #666; letter-spacing: 1px; margin: 0; text-transform: uppercase;">
-                🛠️ This Area is Under Development 🛠️
-            </p>
         </div>
 
+    </div> /* 📱 NAVIGATION MENU BAR (MENEMPEL DI BAWAH LAYAR HP) */
+    <nav class="bottom-nav">
+        <button id="btn-wealth" class="nav-btn" onclick="switchTab('wealth-panel', 'btn-wealth')">WEALTH LOG</button>
+        <button id="btn-home" class="nav-btn active" onclick="switchTab('dashboard-panel', 'btn-home')">DASHBOARD</button>
+        <button id="btn-quests" class="nav-btn" onclick="switchTab('quests-panel', 'btn-quests')">QUEST LOG</button>
+    </nav>
+
+    /* 🧠 LOGIKA JAVASCRIPT PERPINDAHAN SPA TAB PANEL (MURNI JS) */
+    <script>
+        function switchTab(panelId, buttonId) {
+            // 1. Sembunyikan semua panel terlebih dahulu
+            document.querySelectorAll('.panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+            // 2. Tampilkan panel yang dituju dengan Flexbox agar grid di dalamnya tidak rusak
+            document.getElementById(panelId).style.display = 'flex';
+
+            // 3. Reset status aktif seluruh tombol menu bawah
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 4. Set tombol yang baru diklik menjadi aktif/menyala cyan
+            document.getElementById(buttonId).classList.add('active');
+        }
+
+        // Fungsi sementara untuk mendeteksi centang pada Quest (Nanti dihubungkan ke Apps Script)
+        function handleQuestCheck(checkbox) {
+            if(checkbox.checked) {
+                console.log("Quest " + checkbox.id + " Selesai! Mengirim data...");
+                // Di sini tempat menaruh fungsi Fetch API menuju Google Sheets
+            }
+        }
+    </script>
 </body>
 </html>
