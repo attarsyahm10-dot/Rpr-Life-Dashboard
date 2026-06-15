@@ -602,7 +602,10 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px; padding: 5px;">
                     
-                    <div class="quest-sub-title" style="color: #ff5555;">⚠️ DEBUFF RISK</div>
+ <!-- SUB-HEADER 1: DAILY DEBUFF RISK -->
+            <div style="font-size: 10px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                ⚠️ DAILY DEBUFF RISK
+            </div>
                     
                     <label class="quest-item">
                         <input type="checkbox" id="cq1" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
@@ -672,8 +675,21 @@
                 <input type="checkbox" id="db18" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
                 <span style="color: #ddaaaa;">Interaksi Keluarga Di-Skip (-20 EXP)</span>
             </label>
-            
+            <!-- SUB-HEADER 2: WEEKLY DEBUFF RISK -->
+            <div style="border-top: 1px dashed #555; margin: 12px 0 6px 0;"></div>
+            <div style="font-size: 10px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                ⚠️ WEEKLY DEBUFF RISK
+            </div>
+            <label class="quest-item">
+                <input type="checkbox" id="db18" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                <span style="color: #ddaaaa;">Interaksi Keluarga Di-Skip (-20 EXP)</span>
+            </label>
+                </div>
+            </div>
+                    
            <!-- 🚨 SPIRITUAL CRITICAL DEBUFFS (CURSED ZONE) -->
+    <!-- CARD 2: SPIRITUAL DISASTER (CRITICAL ZONE) -->
+    <div class="card-box" style="padding: 16px 8px; border-color: #ff0000; background-color: #140909;">
             <div style="
                 font-size: 11px; 
                 letter-spacing: 2px; 
@@ -687,6 +703,7 @@
             ">
                 [ CRITICAL WARNING: SPIRITUAL DISASTER ]
             </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 5px;">
 
             <label class="quest-item">
                 <input type="checkbox" id="db12" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
