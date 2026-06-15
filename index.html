@@ -10,28 +10,28 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Courier New', Courier, monospace; /* Menggunakan font monospace agar terasa aura game/data */
+            font-family: 'Courier New', Courier, monospace;
         }
 
         body {
             background-color: #0d0f12;
             color: #ffffff;
             padding: 12px;
-            padding-bottom: 80px; /* Ditambahkan agar konten tidak tertutup oleh menu navigasi bawah */
+            padding-bottom: 80px;
             display: flex;
             justify-content: center;
         }
 
-        /* Container Utama agar lebar semua kotak sejajar dan konsisten di HP */
+        /* Container Utama */
         .dashboard-container {
             width: 100%;
-            max-width: 450px; /* Batas lebar layar HP nyaman */
+            max-width: 450px;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Jarak antar baris kotak */
+            gap: 12px;
         }
 
-        /* Gaya Garis Kotak Utama (Mengikuti Garis Putih di Gambar 31371.jpg) */
+        /* Gaya Garis Kotak Utama */
         .card-box {
             border: 2px solid #ffffff;
             background-color: #111418;
@@ -42,7 +42,7 @@
         /* --- ROW 1: HEADER STATS (3 Kolom) --- */
         .header-grid {
             display: grid;
-            grid-template-columns: repeat(3,1fr); /* Pembagian rasio kolom */
+            grid-template-columns: repeat(3,1fr);
             gap: 8px;
         }
 
@@ -58,13 +58,12 @@
             gap: 8px;
         }
 
-        /* Replika Lingkaran Donat Sederhana dengan CSS */
         .donut-placeholder {
             width: 90px;
             height: 90px;
             border-radius: 50%;
-            border: 15px solid #2a2514; /* Warna dasar kecoklatan */
-            border-top: 15px solid #00f0ff; /* Sektor cyan aktif */
+            border: 15px solid #2a2514;
+            border-top: 15px solid #00f0ff;
             margin: 10px auto;
             position: relative;
         }
@@ -116,7 +115,6 @@
             border-left: 1px dashed #555;
         }
 
-        /* Bentuk kelopak biru di tengah grafik */
         .radar-shape {
             position: absolute;
             top: 15%; left: 35%; right: 35%; bottom: 15%;
@@ -163,11 +161,7 @@
             height: 100%;
         }
 
-        /* ======================================================== */
-        /* 🛠️ FITUR BARU: CSS NAVIGASI & SISTEM SPA PANEL (AMAN)  */
-        /* ======================================================== */
-        
-        /* Mengatur agar panel tersembunyi secara default */
+        /* --- SPA PANEL SYSTEM --- */
         .panel {
             display: none;
             width: 100%;
@@ -175,12 +169,10 @@
             gap: 12px;
         }
 
-        /* Memastikan panel dashboard/home langsung terbuka di awal */
         #dashboard-panel {
             display: flex;
         }
 
-        /* Pembungkus navigasi menu bawah ala game */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -195,11 +187,10 @@
             z-index: 999;
         }
 
-        /* Desain tombol menu navigasi agar match dengan UI */
         .nav-btn {
             background: transparent;
             border: none;
-            color: #666; /* Warna saat tidak aktif */
+            color: #666;
             padding: 14px 0;
             font-family: 'Courier New', Courier, monospace;
             font-size: 10px;
@@ -210,14 +201,12 @@
             transition: all 0.2s ease;
         }
 
-        /* Efek penanda tombol yang sedang aktif */
         .nav-btn.active {
-            color: #00f0ff; /* Cyan menyala khas UI kamu */
+            color: #00f0ff;
             text-shadow: 0 0 5px #00f0ff;
             background-color: #161b22;
         }
 
-        /* Tambahan styling checklist item sederhana agar seirama */
         .quest-item {
             display: flex;
             align-items: center;
@@ -237,6 +226,7 @@
 
     <div class="dashboard-container">
 
+        <!-- PANEL KIRI: WEALTH LOG -->
         <div id="wealth-panel" class="panel">
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
@@ -249,11 +239,13 @@
             </div>
         </div>
 
-
+        <!-- PANEL TENGAH: DASHBOARD / HOME -->
         <div id="dashboard-panel" class="panel">
             
+            <!-- ROW 1: HEADER STATS -->
             <div class="header-grid">
                 
+                <!-- KOTAK 1: TOTAL EXP & QUESTS -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">TOTAL EXP</div>
                     <div style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">240</div>
@@ -261,6 +253,7 @@
                     <div style="font-size: 12px; font-weight: bold;">2</div>
                 </div>
 
+                <!-- KOTAK 2: PROFIL ANAK AYAM -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <span style="font-size: 22px; margin-bottom: 2px;">🐣</span>
                     <div style="font-size: 8px; white-space: nowrap; line-height: 1.2; text-align: center; width: 100%;">
@@ -270,6 +263,7 @@
                     </div>
                 </div>
 
+                <!-- KOTAK 3: BAR EXP -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <div style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
                         240 / 1000 EXP
@@ -284,6 +278,7 @@
 
             </div>
 
+            <!-- ROW 2: CHARTS (DAILY & WEEKLY) -->
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 11px; letter-spacing: 2px; color: #aaa; margin-bottom: 15px; font-weight: bold;">
                     [ DAILY & WEEKLY GOALS ]
@@ -291,6 +286,7 @@
                 
                 <div class="charts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     
+                    <!-- DONUT KIRI: DAILY -->
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div style="font-size: 9px; font-weight: bold; color: #fff;">DAILY EXP GOAL</div>
                         <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 40% )</div>
@@ -326,6 +322,7 @@
                         <div style="font-size: 8px; color: #aaa; white-space: nowrap;">60 EXP REMAINING</div>
                     </div>
 
+                    <!-- DONUT KANAN: WEEKLY -->
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div style="font-size: 9px; font-weight: bold; color: #fff;">WEEKLY EXP GOAL</div>
                         <div style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 50% )</div>
@@ -364,8 +361,10 @@
                 </div>
             </div>
 
+            <!-- ROW 3: STATUS BARS -->
             <div class="status-grid">
                 
+                <!-- HEALTH -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
                     <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
@@ -375,6 +374,7 @@
                     </div>
                 </div>
 
+                <!-- MENTAL -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
                     <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
@@ -384,6 +384,7 @@
                     </div>
                 </div>
 
+                <!-- SOCIAL -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
                     <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
@@ -393,6 +394,7 @@
                     </div>
                 </div>
 
+                <!-- KNOWLEDGE -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
                     <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
@@ -404,6 +406,7 @@
 
             </div>
 
+            <!-- ROW 4: GROWTH & WEALTH -->
             <div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
                 
                 <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
@@ -482,7 +485,10 @@
                 </p>
             </div>
             
-        </div> <div id="quests-panel" class="panel">
+        </div>
+
+        <!-- ⚔️ PANEL KANAN: QUEST LOG -->
+        <div id="quests-panel" class="panel">
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
                     [ ACTIVE QUEST LOG ]
@@ -505,38 +511,34 @@
             </div>
         </div>
 
-    </div> /* 📱 NAVIGATION MENU BAR (MENEMPEL DI BAWAH LAYAR HP) */
+    </div>
+
+    <!-- NAVIGATION MENU BAR -->
     <nav class="bottom-nav">
         <button id="btn-wealth" class="nav-btn" onclick="switchTab('wealth-panel', 'btn-wealth')">WEALTH LOG</button>
         <button id="btn-home" class="nav-btn active" onclick="switchTab('dashboard-panel', 'btn-home')">DASHBOARD</button>
         <button id="btn-quests" class="nav-btn" onclick="switchTab('quests-panel', 'btn-quests')">QUEST LOG</button>
     </nav>
 
-    /* 🧠 LOGIKA JAVASCRIPT PERPINDAHAN SPA TAB PANEL (MURNI JS) */
+    <!-- LOGIKA JAVASCRIPT -->
     <script>
         function switchTab(panelId, buttonId) {
-            // 1. Sembunyikan semua panel terlebih dahulu
             document.querySelectorAll('.panel').forEach(panel => {
                 panel.style.display = 'none';
             });
 
-            // 2. Tampilkan panel yang dituju dengan Flexbox agar grid di dalamnya tidak rusak
             document.getElementById(panelId).style.display = 'flex';
 
-            // 3. Reset status aktif seluruh tombol menu bawah
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // 4. Set tombol yang baru diklik menjadi aktif/menyala cyan
             document.getElementById(buttonId).classList.add('active');
         }
 
-        // Fungsi sementara untuk mendeteksi centang pada Quest (Nanti dihubungkan ke Apps Script)
         function handleQuestCheck(checkbox) {
             if(checkbox.checked) {
-                console.log("Quest " + checkbox.id + " Selesai! Mengirim data...");
-                // Di sini tempat menaruh fungsi Fetch API menuju Google Sheets
+                console.log("Quest " + checkbox.id + " Selesai!");
             }
         }
     </script>
