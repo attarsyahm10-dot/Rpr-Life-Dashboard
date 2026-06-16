@@ -838,25 +838,36 @@
     <!-- LOGIKA JAVASCRIPT -->
 <script>
 
-// Fungsi Navigasi
+// =========================
+// NAVIGASI PANEL
+// =========================
 function switchTab(panelId, buttonId) {
 
-    document.querySelectorAll('.panel').forEach(function(panel) {
+    document.querySelectorAll('.panel').forEach(panel => {
         panel.style.display = 'none';
     });
 
     document.getElementById(panelId).style.display = 'flex';
 
-    document.querySelectorAll('.nav-btn').forEach(function(btn) {
+    document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
 
     document.getElementById(buttonId).classList.add('active');
+
+    // Simpan panel terakhir
+    localStorage.setItem('activePanel', panelId);
+    localStorage.setItem('activeButton', buttonId);
 }
 
-// URL Apps Script
+// =========================
+// GOOGLE APPS SCRIPT
+// =========================
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
+// =========================
+// HITUNG NOMOR MINGGU
+// =========================
 function getWeekNumber(date) {
 
     const firstDay = new Date(date.getFullYear(), 0, 1);
@@ -865,6 +876,9 @@ function getWeekNumber(date) {
     return Math.ceil((days + firstDay.getDay() + 1) / 7);
 }
 
+// =========================
+// RESET QUEST OTOMATIS
+// =========================
 function autoResetQuest() {
 
     const today = new Date();
@@ -883,7 +897,7 @@ function autoResetQuest() {
     const lastWeek =
         localStorage.getItem("lastWeeklyReset");
 
-    // RESET DAILY
+    // DAILY RESET
     if (lastDate !== currentDate) {
 
         document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
@@ -900,7 +914,7 @@ function autoResetQuest() {
         );
     }
 
-    // RESET WEEKLY
+    // WEEKLY RESET
     if (lastWeek !== currentWeek) {
 
         document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
@@ -917,33 +931,21 @@ function autoResetQuest() {
         );
     }
 }
-// Pulihkan checkbox setelah refresh
-window.onload = function() {
 
-    autoResetQuest();
-
-    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-
-        const saved = localStorage.getItem(cb.id);
-
-        if (saved === "true") {
-            cb.checked = true;
-        }
-
-    });
-
-};
-
-// Saat checkbox diklik
+// =========================
+// CHECKBOX DIKLIK
+// =========================
 function handleQuestCheck(checkbox) {
 
     const questId = checkbox.id;
     const isChecked = checkbox.checked;
 
-    // Simpan ke browser
-    localStorage.setItem(questId, isChecked.toString());
+    // Simpan ke localStorage
+    localStorage.setItem(
+        questId,
+        isChecked.toString()
+    );
 
-    // Format tanggal
     const today = new Date();
 
     const formattedDate =
@@ -951,7 +953,6 @@ function handleQuestCheck(checkbox) {
         String(today.getMonth() + 1).padStart(2, "0") + "-" +
         String(today.getDate()).padStart(2, "0");
 
-    // Kirim ke Spreadsheet
     fetch(APPS_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
@@ -965,8 +966,51 @@ function handleQuestCheck(checkbox) {
             date: formattedDate
         })
     });
-
 }
+
+// =========================
+// SAAT HALAMAN DIBUKA
+// =========================
+window.onload = function() {
+
+    // Reset Daily / Weekly
+    autoResetQuest();
+
+    // Kembalikan panel terakhir
+    const activePanel =
+        localStorage.getItem('activePanel');
+
+    const activeButton =
+        localStorage.getItem('activeButton');
+
+    if (activePanel && activeButton) {
+
+        document.querySelectorAll('.panel').forEach(panel => {
+            panel.style.display = 'none';
+        });
+
+        document.getElementById(activePanel).style.display = 'flex';
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        document.getElementById(activeButton).classList.add('active');
+    }
+
+    // Kembalikan checkbox
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+
+        const saved =
+            localStorage.getItem(cb.id);
+
+        if (saved === "true") {
+            cb.checked = true;
+        }
+
+    });
+
+};
 
 </script>
 </body>
