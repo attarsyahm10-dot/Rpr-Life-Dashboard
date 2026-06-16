@@ -857,8 +857,70 @@ function switchTab(panelId, buttonId) {
 // URL Apps Script
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
+function getWeekNumber(date) {
+
+    const firstDay = new Date(date.getFullYear(), 0, 1);
+    const days = Math.floor((date - firstDay) / 86400000);
+
+    return Math.ceil((days + firstDay.getDay() + 1) / 7);
+}
+
+function autoResetQuest() {
+
+    const today = new Date();
+
+    const currentDate =
+        today.getFullYear() + "-" +
+        String(today.getMonth() + 1).padStart(2, "0") + "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    const currentWeek =
+        today.getFullYear() + "-W" + getWeekNumber(today);
+
+    const lastDate =
+        localStorage.getItem("lastDailyReset");
+
+    const lastWeek =
+        localStorage.getItem("lastWeeklyReset");
+
+    // RESET DAILY
+    if (lastDate !== currentDate) {
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+
+            if (cb.id.charAt(2) === "D") {
+                localStorage.setItem(cb.id, "false");
+            }
+
+        });
+
+        localStorage.setItem(
+            "lastDailyReset",
+            currentDate
+        );
+    }
+
+    // RESET WEEKLY
+    if (lastWeek !== currentWeek) {
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+
+            if (cb.id.charAt(2) === "W") {
+                localStorage.setItem(cb.id, "false");
+            }
+
+        });
+
+        localStorage.setItem(
+            "lastWeeklyReset",
+            currentWeek
+        );
+    }
+}
 // Pulihkan checkbox setelah refresh
 window.onload = function() {
+
+    autoResetQuest();
 
     document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
 
