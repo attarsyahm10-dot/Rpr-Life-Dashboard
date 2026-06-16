@@ -941,7 +941,7 @@ function handleQuestCheck(checkbox) {
     const isChecked = checkbox.checked;
 
     // Simpan ke browser
-    localStorage.setItem(questId, isChecked);
+    localStorage.setItem(questId, isChecked.toString());
 
     // Format tanggal
     const today = new Date();
