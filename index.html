@@ -488,26 +488,6 @@
                 </div>
 
             </div>
-            
-<div class="card-box" style="margin-top:10px;">
-
-    <div id="current-date"
-         style="
-         font-size:11px;
-         color:#aaaaaa;
-         margin-bottom:6px;
-         letter-spacing:1px;">
-    </div>
-
-    <div id="current-time"
-         style="
-         font-size:22px;
-         color:#00f0ff;
-         font-weight:bold;
-         letter-spacing:2px;">
-    </div>
-
-</div>
 
        <!-- ⚔️ PANEL KANAN: QUEST LOG -->
        <div id="quests-panel" class="panel">
@@ -983,41 +963,9 @@ function handleQuestCheck(checkbox) {
 // =========================
 // SAAT HALAMAN DIBUKA
 // =========================
-function updateDateTime() {
-
-    console.log("DateTime Running");
-
-    const dateEl = document.getElementById("current-date");
-    const timeEl = document.getElementById("current-time");
-
-    if (!dateEl || !timeEl) {
-        console.log("Element Date Time tidak ditemukan");
-        return;
-    }
-
-    const now = new Date();
-
-    const dateText =
-        now.toLocaleDateString("id-ID", {
-            weekday: "long",
-            day: "2-digit",
-            month: "long",
-            year: "numeric"
-        });
-
-    const timeText =
-        now.toLocaleTimeString("id-ID");
-
-    dateEl.innerHTML = dateText;
-    timeEl.innerHTML = timeText;
-}
 window.onload = function() {
 
     autoResetQuest();
-
-    updateDateTime();
-
-    setInterval(updateDateTime, 1000);
 
     // Kembalikan panel terakhir
     const activePanel =
