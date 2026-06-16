@@ -489,13 +489,17 @@
 
             </div>
             
-            <div style="text-align: center; margin-top: 25px; margin-bottom: 15px; width: 100%;">
-                <p style="font-family: monospace; font-size: 9px; color: #666; letter-spacing: 1px; margin: 0; text-transform: uppercase;">
-                    🛠️ This Area is Under Development 🛠️
-                </p>
-            </div>
-            
-        </div>
+<div style="text-align:center; margin-top:25px; margin-bottom:15px; width:100%;">
+
+    <div id="current-date"
+         style="font-size:11px; color:#ffffff; margin-bottom:5px; letter-spacing:1px;">
+    </div>
+
+    <div id="current-time"
+         style="font-size:18px; color:#00f0ff; font-weight:bold; letter-spacing:2px;">
+    </div>
+
+</div>
 
        <!-- ⚔️ PANEL KANAN: QUEST LOG -->
        <div id="quests-panel" class="panel">
@@ -971,10 +975,31 @@ function handleQuestCheck(checkbox) {
 // =========================
 // SAAT HALAMAN DIBUKA
 // =========================
+function updateDateTime() {
+
+    const now = new Date();
+
+    const dateText =
+        now.toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+
+    const timeText =
+        now.toLocaleTimeString("id-ID");
+
+    document.getElementById("current-date").innerHTML = dateText;
+    document.getElementById("current-time").innerHTML = timeText;
+}
 window.onload = function() {
 
-    // Reset Daily / Weekly
     autoResetQuest();
+
+    updateDateTime();
+
+    setInterval(updateDateTime, 1000);
 
     // Kembalikan panel terakhir
     const activePanel =
