@@ -220,16 +220,17 @@
             accent-color: #00f0ff;
             cursor: pointer;
         }
-  /* Styling sub-kategori quest yang baru (Tanpa garis & font lebih besar) */
-.quest-sub-title {
-    font-size: 13px;          /* Diperbesar dari 9px agar lebih stand out */
-    font-weight: bold;        /* Dibuat tebal */
-    color: #00f0ff;           /* Tetap warna cyan khas dashboard-mu */
-    text-align: left;
-    margin-top: 14px;         /* Memberi jarak yang pas dengan kelompok atasnya */
-    margin-bottom: 6px;       /* Jarak ke list quest di bawahnya */
-    letter-spacing: 1.5px;    /* Efek renggang teks khas game retro */
-}
+
+        /* Styling sub-kategori quest yang baru (Tanpa garis & font lebih besar) */
+        .quest-sub-title {
+            font-size: 13px;          
+            font-weight: bold;        
+            color: #00f0ff;           
+            text-align: left;
+            margin-top: 14px;         
+            margin-bottom: 6px;       
+            letter-spacing: 1.5px;    
+        }
     </style>
 </head>
 <body>
@@ -488,9 +489,10 @@
                 </div>
 
             </div>
+        </div>
 
-       <!-- ⚔️ PANEL KANAN: QUEST LOG -->
-       <div id="quests-panel" class="panel">
+        <!-- ⚔️ PANEL KANAN: QUEST LOG -->
+        <div id="quests-panel" class="panel">
             
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 12px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
@@ -579,7 +581,7 @@
                     </label>
 
                     <div class="quest-sub-title">👥 SOCIAL</div>
-<label class="quest-item">
+                    <label class="quest-item">
                         <input type="checkbox" id="SPD0001" onchange="handleQuestCheck(this)">
                         <span>Interaksi Dengan Keluarga "Home Link Quest" (+100 EXP)</span>
                     </label>
@@ -599,7 +601,7 @@
                 <div style="display: flex; flex-direction: column; gap: 6px; padding: 5px;">
                     
                     <div class="quest-sub-title">🧠 MENTAL</div>
-<label class="quest-item">
+                    <label class="quest-item">
                         <input type="checkbox" id="MPW0001" onchange="handleQuestCheck(this)">
                         <span>Puasa "Hard Mode Quest" (+150 EXP)</span>
                     </label>
@@ -615,7 +617,7 @@
                     </label>
 
                     <div class="quest-sub-title">👥 SOCIAL</div>
-<label class="quest-item">
+                    <label class="quest-item">
                         <input type="checkbox" id="SPW0001" onchange="handleQuestCheck(this)">
                         <span>Membantu Orang Lain "Support Hero Quest" (+150 EXP)</span>
                     </label>
@@ -631,7 +633,7 @@
                     </label>
 
                     <div class="quest-sub-title">📝 KNOWLEDGE</div>
-<label class="quest-item">
+                    <label class="quest-item">
                         <input type="checkbox" id="KPW0001" onchange="handleQuestCheck(this)">
                         <span>Production Mode (+150 EXP)</span>
                     </label>
@@ -664,10 +666,10 @@
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px; padding: 5px;">
                     
- <!-- SUB-HEADER 1: DAILY DEBUFF RISK -->
-            <div style="font-size: 12px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
-                ⚠️ DAILY DEBUFF RISK
-            </div>
+                    <!-- SUB-HEADER 1: DAILY DEBUFF RISK -->
+                    <div style="font-size: 12px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                        ⚠️ DAILY DEBUFF RISK
+                    </div>
                     
                     <label class="quest-item">
                         <input type="checkbox" id="HND0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
@@ -675,151 +677,142 @@
                     </label>
                     
                     <label class="quest-item">
-                <input type="checkbox" id="HND0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 2 Quest Health) (-20 EXP)</span>
-            </label>
-                  <label class="quest-item">
-                <input type="checkbox" id="HND0007" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 4 Quest Health) (-80 EXP)</span>
-            </label>
+                        <input type="checkbox" id="HND0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 2 Quest Health) (-20 EXP)</span>
+                    </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0007" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 4 Quest Health) (-80 EXP)</span>
+                    </label>
                     
-            <label class="quest-item">
-                <input type="checkbox" id="HND0011" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 6 Quest Health) (-150 EXP)</span>
-            </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0011" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip 6 Quest Health) (-150 EXP)</span>
+                    </label>
                     
-            <label class="quest-item">
-                <input type="checkbox" id="HND0012" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip &gt;6 Quest Health) (-500 EXP)</span>
-            </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0012" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Pola Acak / Tidak Konsisten (Skip &gt;6 Quest Health) (-500 EXP)</span>
+                    </label>
 
-            <label class="quest-item">
-                <input type="checkbox" id="HND0003" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Tidak Mandi / Tidak Bersih (-40 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0004" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Sugar Overload (-50 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0005" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Kurang Minum (&lt;1L air) (-70 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0006" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Junk Food / Fast Food Mode (-80 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0008" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Kurang Gerak (&lt;3000 langkah) (-90 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0009" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Intox Mode (-140 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="HND0010" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Kurang Tidur (&lt;5 jam) (-150 EXP)</span>
-            </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0003" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Tidak Mandi / Tidak Bersih (-40 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0004" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Sugar Overload (-50 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0005" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Kurang Minum (&lt;1L air) (-70 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0006" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Junk Food / Fast Food Mode (-80 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0008" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Kurang Gerak (&lt;3000 langkah) (-90 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0009" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Intox Mode (-140 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="HND0010" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Kurang Tidur (&lt;5 jam) (-150 EXP)</span>
+                    </label>
 
-            <label class="quest-item">
-                <input type="checkbox" id="SND0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Interaksi Teman Di-Skip (-15 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="SND0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Interaksi Keluarga Di-Skip (-20 EXP)</span>
-            </label>
-            <!-- SUB-HEADER 2: WEEKLY DEBUFF RISK -->
-            <div style="font-size: 12px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; margin-top: 10px; display: flex; align-items: center; gap: 6px;">
-                ⚠️ WEEKLY DEBUFF RISK
-            </div>
-<label class="quest-item">
-                <input type="checkbox" id="KNW0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Knowledge Gain Skip (-40 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="KNW0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Training Mode Skip (-60 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="KNW0003" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Real World Use Skip (-90 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="KNW0004" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Challenge Stage Skip (-120 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="KNW0005" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Production Mode Skip (-150 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="SNW0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
-                <span style="color: #ddaaaa;">Membantu Orang Lain Di-Skip (-30 EXP)</span>
-            </label>
+                    <label class="quest-item">
+                        <input type="checkbox" id="SND0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Interaksi Teman Di-Skip (-15 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="SND0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Interaksi Keluarga Di-Skip (-20 EXP)</span>
+                    </label>
+                    
+                    <!-- SUB-HEADER 2: WEEKLY DEBUFF RISK -->
+                    <div style="font-size: 12px; color: #ff3333; font-weight: bold; text-align: left; letter-spacing: 1px; margin-bottom: 4px; margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+                        ⚠️ WEEKLY DEBUFF RISK
+                    </div>
+                    <label class="quest-item">
+                        <input type="checkbox" id="KNW0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Knowledge Gain Skip (-40 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="KNW0002" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Training Mode Skip (-60 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="KNW0003" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Real World Use Skip (-90 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="KNW0004" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Challenge Stage Skip (-120 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="KNW0005" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Production Mode Skip (-150 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="SNW0001" style="accent-color: #ff3333;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ddaaaa;">Membantu Orang Lain Di-Skip (-30 EXP)</span>
+                    </label>
                 </div>
             </div>
                     
-           <!-- 🚨 SPIRITUAL CRITICAL DEBUFFS (CURSED ZONE) -->
-    <!-- CARD 2: SPIRITUAL DISASTER (CRITICAL ZONE) -->
-    <div class="card-box" style="padding: 16px 8px; border-color: #ff0000; background-color: #140909;">
-            <div style="
-                font-size: 11px; 
-                letter-spacing: 2px; 
-                color: #ff0000; 
-                font-weight: bold; 
-                text-align: center; 
-                text-shadow: 0 0 5px #ff0000;
-                margin-top: 15px; 
-                margin-bottom: 15px;
-                width: 100%;
-            ">
-                [ CRITICAL WARNING: SPIRITUAL DISASTER ]
-            </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; padding: 5px;">
-
-            <label class="quest-item">
-                <input type="checkbox" id="MND0003" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
-                <span style="color: #ff4444; font-weight: bold;">[SUBUH DIHANCURKAN] Kehilangan Berkah Fajar (-15 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="MND0001" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
-                <span style="color: #ff4444; font-weight: bold;">[ZUHUR DITINGGALKAN] Pilar Tengah Runtuh (-10 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="MND0002" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
-                <span style="color: #ff4444; font-weight: bold;">[ASHAR DIABAIKAN] Amalan Terhapus / Void Status (-10 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="MND0004" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
-                <span style="color: #ff4444; font-weight: bold;">[MAGHRIB DILEWATKAN] Terjebak Kegelapan Tanpa Proteksi (-15 EXP)</span>
-            </label>
-            
-            <label class="quest-item">
-                <input type="checkbox" id="MND0005" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
-                <span style="color: #ff4444; font-weight: bold;">[ISYA DILUPAKAN] Menutup Hari dengan Kegagalan Sistem (-20 EXP)</span>
-            </label>
-            
+            <!-- 🚨 SPIRITUAL CRITICAL DEBUFFS (CURSED ZONE) -->
+            <div class="card-box" style="padding: 16px 8px; border-color: #ff0000; background-color: #140909;">
+                <div style="font-size: 11px; letter-spacing: 2px; color: #ff0000; font-weight: bold; text-align: center; text-shadow: 0 0 5px #ff0000; margin-top: 15px; margin-bottom: 15px; width: 100%;">
+                    [ CRITICAL WARNING: SPIRITUAL DISASTER ]
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px; padding: 5px;">
+                    <label class="quest-item">
+                        <input type="checkbox" id="MND0003" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ff4444; font-weight: bold;">[SUBUH DIHANCURKAN] Kehilangan Berkah Fajar (-15 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="MND0001" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ff4444; font-weight: bold;">[ZUHUR DITINGGALKAN] Pilar Tengah Runtuh (-10 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="MND0002" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ff4444; font-weight: bold;">[ASHAR DIABAIKAN] Amalan Terhapus / Void Status (-10 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="MND0004" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ff4444; font-weight: bold;">[MAGHRIB DILEWATKAN] Terjebak Kegelapan Tanpa Proteksi (-15 EXP)</span>
+                    </label>
+                    
+                    <label class="quest-item">
+                        <input type="checkbox" id="MND0005" style="accent-color: #ff0000;" onchange="handleQuestCheck(this)">
+                        <span style="color: #ff4444; font-weight: bold;">[ISYA DILUPAKAN] Menutup Hari dengan Kegagalan Sistem (-20 EXP)</span>
+                    </label>
                 </div>
             </div>
 
-        </div>
+        </div> <!-- /#quests-panel -->
+
+    </div> <!-- /.dashboard-container -->
+
     <!-- NAVIGATION MENU BAR -->
     <nav class="bottom-nav">
         <button id="btn-wealth" class="nav-btn" onclick="switchTab('wealth-panel', 'btn-wealth')">WEALTH LOG</button>
@@ -829,180 +822,171 @@
 
     <!-- LOGIKA JAVASCRIPT -->
 <script>
+    // =========================
+    // GOOGLE APPS SCRIPT URL
+    // =========================
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
-// =========================
-// NAVIGASI PANEL
-// =========================
-function switchTab(panelId, buttonId) {
-
-    document.querySelectorAll('.panel').forEach(panel => {
-        panel.style.display = 'none';
-    });
-
-    document.getElementById(panelId).style.display = 'flex';
-
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    document.getElementById(buttonId).classList.add('active');
-
-    // Simpan panel terakhir
-    localStorage.setItem('activePanel', panelId);
-    localStorage.setItem('activeButton', buttonId);
-}
-
-// =========================
-// GOOGLE APPS SCRIPT
-// =========================
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
-
-// =========================
-// HITUNG NOMOR MINGGU
-// =========================
-function getWeekNumber(date) {
-
-    const firstDay = new Date(date.getFullYear(), 0, 1);
-    const days = Math.floor((date - firstDay) / 86400000);
-
-    return Math.ceil((days + firstDay.getDay() + 1) / 7);
-}
-
-// =========================
-// RESET QUEST OTOMATIS
-// =========================
-function autoResetQuest() {
-
-    const today = new Date();
-
-    const currentDate =
-        today.getFullYear() + "-" +
-        String(today.getMonth() + 1).padStart(2, "0") + "-" +
-        String(today.getDate()).padStart(2, "0");
-
-    const currentWeek =
-        today.getFullYear() + "-W" + getWeekNumber(today);
-
-    const lastDate =
-        localStorage.getItem("lastDailyReset");
-
-    const lastWeek =
-        localStorage.getItem("lastWeeklyReset");
-
-    // DAILY RESET
-    if (lastDate !== currentDate) {
-
-        document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-
-            if (cb.id.charAt(2) === "D") {
-                localStorage.setItem(cb.id, "false");
-            }
-
-        });
-
-        localStorage.setItem(
-            "lastDailyReset",
-            currentDate
-        );
-    }
-
-    // WEEKLY RESET
-    if (lastWeek !== currentWeek) {
-
-        document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-
-            if (cb.id.charAt(2) === "W") {
-                localStorage.setItem(cb.id, "false");
-            }
-
-        });
-
-        localStorage.setItem(
-            "lastWeeklyReset",
-            currentWeek
-        );
-    }
-}
-
-// =========================
-// CHECKBOX DIKLIK
-// =========================
-function handleQuestCheck(checkbox) {
-
-    const questId = checkbox.id;
-    const isChecked = checkbox.checked;
-
-    // Simpan ke localStorage
-    localStorage.setItem(
-        questId,
-        isChecked.toString()
-    );
-
-    const today = new Date();
-
-    const formattedDate =
-        today.getFullYear() + "-" +
-        String(today.getMonth() + 1).padStart(2, "0") + "-" +
-        String(today.getDate()).padStart(2, "0");
-
-    fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            action: "updateQuest",
-            questId: questId,
-            status: isChecked,
-            date: formattedDate
-        })
-    });
-}
-
-// =========================
-// SAAT HALAMAN DIBUKA
-// =========================
-window.onload = function() {
-
-    autoResetQuest();
-
-    // Kembalikan panel terakhir
-    const activePanel =
-        localStorage.getItem('activePanel');
-
-    const activeButton =
-        localStorage.getItem('activeButton');
-
-    if (activePanel && activeButton) {
-
-        document.querySelectorAll('.panel').forEach(panel => {
+    // =========================
+    // NAVIGASI PANEL (SPA SYSTEM)
+    // =========================
+    function switchTab(panelId, buttonId) {
+        document.querySelectorAll('.panel').forEach(function(panel) {
             panel.style.display = 'none';
         });
 
-        document.getElementById(activePanel).style.display = 'flex';
+        document.getElementById(panelId).style.display = 'flex';
 
-        document.querySelectorAll('.nav-btn').forEach(btn => {
+        document.querySelectorAll('.nav-btn').forEach(function(btn) {
             btn.classList.remove('active');
         });
 
-        document.getElementById(activeButton).classList.add('active');
+        document.getElementById(buttonId).classList.add('active');
+
+        localStorage.setItem('activePanel', panelId);
+        localStorage.setItem('activeButton', buttonId);
     }
 
-    // Kembalikan checkbox
-    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+    // =========================
+    // HITUNG NOMOR MINGGU
+    // =========================
+    function getWeekNumber(date) {
+        const firstDay = new Date(date.getFullYear(), 0, 1);
+        const days = Math.floor((date - firstDay) / 86400000);
+        return Math.ceil((days + firstDay.getDay() + 1) / 7);
+    }
 
-        const saved =
-            localStorage.getItem(cb.id);
+    // =========================
+    // RESET QUEST OTOMATIS
+    // =========================
+    function autoResetQuest() {
+        const today = new Date();
+        const currentDate = today.getFullYear() + "-" +
+                            String(today.getMonth() + 1).padStart(2, "0") + "-" +
+                            String(today.getDate()).padStart(2, "0");
 
-        if (saved === "true") {
-            cb.checked = true;
+        const currentWeek = today.getFullYear() + "-W" + getWeekNumber(today);
+        const lastDate = localStorage.getItem("lastDailyReset");
+        const lastWeek = localStorage.getItem("lastWeeklyReset");
+
+        // DAILY RESET
+        if (lastDate !== currentDate) {
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                if (cb.id.charAt(2) === "D") {
+                    localStorage.setItem(cb.id, "false");
+                    cb.checked = false;
+                }
+            });
+            localStorage.setItem("lastDailyReset", currentDate);
         }
 
-    });
+        // WEEKLY RESET
+        if (lastWeek !== currentWeek) {
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                if (cb.id.charAt(2) === "W") {
+                    localStorage.setItem(cb.id, "false");
+                    cb.checked = false;
+                }
+            });
+            localStorage.setItem("lastWeeklyReset", currentWeek);
+        }
+    }
 
-};
+    // =========================
+    // CHECKBOX DIKLIK (SINKRON KE GSHEET)
+    // =========================
+    function handleQuestCheck(checkbox) {
+        const questId = checkbox.id;
+        const isChecked = checkbox.checked;
 
+        localStorage.setItem(questId, isChecked.toString());
+
+        const today = new Date();
+        const formattedDate = today.getFullYear() + "-" +
+                              String(today.getMonth() + 1).padStart(2, "0") + "-" +
+                              String(today.getDate()).padStart(2, "0");
+
+        console.log("Mengirim Progres... ID: " + questId + " | Status: " + isChecked);
+
+        fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: "updateQuest",
+                questId: questId,
+                status: isChecked,
+                date: formattedDate
+            })
+        })
+        .then(function() {
+            console.log("[SUKSES] ID " + questId + " tersimpan di GSheet.");
+        })
+        .catch(function(error) {
+            console.error("[ERROR] Gagal sinkronisasi:", error);
+        });
+    }
+
+    // =========================
+    // PENARIK MEMORI UTAMA (WINDOW ONLOAD)
+    // =========================
+    window.onload = function() {
+        // Run auto reset check
+        autoResetQuest();
+
+        // 1. Kembalikan Posisi Navigasi Menu Terakhir
+        const activePanel = localStorage.getItem('activePanel');
+        const activeButton = localStorage.getItem('activeButton');
+        if (activePanel && activeButton) {
+            document.querySelectorAll('.panel').forEach(function(panel) {
+                panel.style.display = 'none';
+            });
+            document.getElementById(activePanel).style.display = 'flex';
+            document.querySelectorAll('.nav-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.getElementById(activeButton).classList.add('active');
+        }
+
+        // 2. Tarik Status Ceklis Real-Time Langsung Dari Google Sheets
+        console.log("Menghubungkan ke API Google Sheets untuk menarik status ceklis hari ini...");
+        
+        fetch(APPS_SCRIPT_URL)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log("Data ceklis hari ini sukses diunduh:", data);
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+                const questId = checkbox.id;
+                
+                // Jika Google Sheets mencatat statusnya TRUE (Ceklis Aktif)
+                if (data && data[questId]) {
+                    checkbox.checked = true;
+                    localStorage.setItem(questId, "true"); // Update cadangan lokal
+                    console.log("Memulihkan status ceklis untuk ID: " + questId);
+                } else {
+                    // Jika di spreadsheet FALSE atau belum ada datanya hari ini, hilangkan ceklis
+                    checkbox.checked = false;
+                    localStorage.setItem(questId, "false");
+                }
+            });
+        })
+        .catch(function(error) {
+            console.error("Koneksi gagal/Timeout. Menggunakan data lokal sementara.", error);
+            
+            // Backup Plan: Jika internet lambat/error, gunakan memori lokal laptop saja
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                const saved = localStorage.getItem(cb.id);
+                if (saved === "true") {
+                    cb.checked = true;
+                }
+            });
+        });
+    };
 </script>
 </body>
 </html>
