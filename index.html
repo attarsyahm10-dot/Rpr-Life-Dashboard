@@ -895,6 +895,8 @@
         const questId = checkbox.id;
         const isChecked = checkbox.checked; 
         
+        localstorage.setItem(questId, isChecked);
+        
         const today = new Date();
         const formattedDate = today.getFullYear() + '-' + 
                               String(today.getMonth() + 1).padStart(2, '0') + '-' + 
@@ -922,6 +924,18 @@
             console.error("[ERROR] Gagal mengirim data ke GSheet:", error);
         });
     }
+    window.onload = function() {
+        document
+            .querySelectorAll('input[type="checkbox"]')
+            .forEach(function(cb) {
+
+                const saved = localStorage.getItem(cb.id);
+
+                if(saved === "true") {
+                    cb.checked = true;
+                }
+            });
+    };
 </script>
 </body>
 </html>
