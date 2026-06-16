@@ -838,6 +838,14 @@
     <!-- LOGIKA JAVASCRIPT -->
 <script>
     // Fungsi Navigasi Menu (Aman & Utuh)
+<nav class="bottom-nav">
+        <button id="btn-wealth" class="nav-btn" onclick="switchTab('wealth-panel', 'btn-wealth')">WEALTH LOG</button>
+        <button id="btn-home" class="nav-btn active" onclick="switchTab('dashboard-panel', 'btn-home')">DASHBOARD</button>
+        <button id="btn-quests" class="nav-btn" onclick="switchTab('quests-panel', 'btn-quests')">QUEST LOG</button>
+    </nav>
+
+    <script>
+    // 1. Fungsi Navigasi Menu (Tetap Utuh)
     function switchTab(panelId, buttonId) {
         document.querySelectorAll('.panel').forEach(panel => {
             panel.style.display = 'none';
@@ -852,10 +860,37 @@
         document.getElementById(buttonId).classList.add('active');
     }
 
-    // URL Jembatan Google Apps Script (Sudah Sesuai Punya Kamu)
+    // 2. URL Jembatan Google Apps Script (PASTIKAN MENGGUNAKAN LINK TERBARU HASIL DEPLOY LANGKAH 1)
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
-    // Fungsi Update Quest (Sudah dibersihkan dari backtick perusak)
+    // 3. Fungsi Otomatis Memulihkan Ceklis Saat Halaman Di-refresh
+    window.addEventListener('DOMContentLoaded', function() {
+        console.log("Mengambil data memori ceklis hari ini dari Google Sheets...");
+        
+        fetch(APPS_SCRIPT_URL)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log("Data ceklis hari ini sukses dimuat:", data);
+            
+            // Mencari seluruh checkbox di dalam dokumen HTML
+            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+                const questId = checkbox.id;
+                
+                // Jika ID Quest ini tercatat bernilai TRUE untuk tanggal hari ini, pasang kembali ceklisnya!
+                if (data[questId]) {
+                    checkbox.checked = true;
+                    console.log("Ceklis dipulihkan otomatis untuk ID: " + questId);
+                }
+            });
+        })
+        .catch(function(error) {
+            console.error("Gagal memulihkan status ceklis:", error);
+        });
+    });
+
+    // 4. Fungsi Kirim Kemajuan Quest Saat Diklik (Tetap Menggunakan Tanda Petik Biasa)
     function handleQuestCheck(checkbox) {
         const questId = checkbox.id;
         const isChecked = checkbox.checked; 
@@ -865,7 +900,6 @@
                               String(today.getMonth() + 1).padStart(2, '0') + '-' + 
                               String(today.getDate()).padStart(2, '0');
 
-        // Menggunakan tanda petik dua biasa agar 100% bebas dari SyntaxError
         console.log("Mengirim Progres... ID: " + questId + " | Status: " + isChecked + " | Tanggal: " + formattedDate);
 
         fetch(APPS_SCRIPT_URL, {
