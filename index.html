@@ -963,64 +963,36 @@ function updateDateTime() {
     // PENARIK MEMORI UTAMA (WINDOW ONLOAD)
     // =========================
 window.onload = function() {
-
     autoResetQuest();
 
-    updateDateTime();
+    if (typeof updateDateTime === "function") { 
+        updateDateTime(); 
+    }
 
-    setInterval(updateDateTime, 1000);
-
-        // 1. Kembalikan Posisi Navigasi Menu Terakhir
-        const activePanel = localStorage.getItem('activePanel');
-        const activeButton = localStorage.getItem('activeButton');
-        if (activePanel && activeButton) {
-            document.querySelectorAll('.panel').forEach(function(panel) {
-                panel.style.display = 'none';
-            });
-            document.getElementById(activePanel).style.display = 'flex';
-            document.querySelectorAll('.nav-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            document.getElementById(activeButton).classList.add('active');
-        }
-
-        // 2. Tarik Status Ceklis Real-Time Langsung Dari Google Sheets
-        console.log("Menghubungkan ke API Google Sheets untuk menarik status ceklis hari ini...");
-        
-        fetch(APPS_SCRIPT_URL)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log("Data ceklis hari ini sukses diunduh:", data);
-            
-            document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
-                const questId = checkbox.id;
-                
-                // Jika Google Sheets mencatat statusnya TRUE (Ceklis Aktif)
-                if (data && data[questId]) {
-                    checkbox.checked = true;
-                    localStorage.setItem(questId, "true"); // Update cadangan lokal
-                    console.log("Memulihkan status ceklis untuk ID: " + questId);
-                } else {
-                    // Jika di spreadsheet FALSE atau belum ada datanya hari ini, hilangkan ceklis
-                    checkbox.checked = false;
-                    localStorage.setItem(questId, "false");
-                }
-            });
-        })
-        .catch(function(error) {
-            console.error("Koneksi gagal/Timeout. Menggunakan data lokal sementara.", error);
-            
-            // Backup Plan: Jika internet lambat/error, gunakan memori lokal laptop saja
-            document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-                const saved = localStorage.getItem(cb.id);
-                if (saved === "true") {
-                    cb.checked = true;
-                }
-            });
+    const activePanel = localStorage.getItem('activePanel');
+    const activeButton = localStorage.getItem('activeButton');
+    if (activePanel && activeButton) {
+        document.querySelectorAll('.panel').forEach(function(panel) {
+            panel.style.display = 'none';
         });
-    };
+        document.getElementById(activePanel).style.display = 'flex';
+        document.querySelectorAll('.nav-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        document.getElementById(activeButton).classList.add('active');
+    }
+
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+        const questId = checkbox.id;
+        const savedStatus = localStorage.getItem(questId);
+        
+        if (savedStatus === "true") {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+    });
+};
 </script>
 </body>
 </html>
