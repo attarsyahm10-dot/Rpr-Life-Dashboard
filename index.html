@@ -238,6 +238,7 @@
 
     <div class="dashboard-container">
 
+        <!-- PANEL KIRI: WEALTH LOG -->
         <div id="wealth-panel" class="panel">
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
@@ -250,10 +251,13 @@
             </div>
         </div>
 
+        <!-- PANEL TENGAH: DASHBOARD / HOME -->
         <div id="dashboard-panel" class="panel">
             
+            <!-- ROW 1: HEADER STATS -->
             <div class="header-grid">
                 
+                <!-- KOTAK 1: TOTAL EXP & QUESTS -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">TOTAL EXP</div>
                     <div id="db-total-exp" style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">...</div>
@@ -261,6 +265,7 @@
                     <div id="db-quests-done" style="font-size: 12px; font-weight: bold;">...</div>
                 </div>
 
+                <!-- KOTAK 2: PROFIL ANAK AYAM -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <span style="font-size: 22px; margin-bottom: 2px;">🐣</span>
                     <div style="font-size: 8px; white-space: nowrap; line-height: 1.2; text-align: center; width: 100%;">
@@ -270,6 +275,7 @@
                     </div>
                 </div>
 
+                <!-- KOTAK 3: BAR EXP -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
                     <div id="db-exp-ratio" style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
                         ... / ... EXP
@@ -284,6 +290,7 @@
 
             </div>
 
+            <!-- ROW 2: CHARTS (DAILY & WEEKLY) -->
             <div class="card-box" style="padding: 16px 8px;">
                 <div style="font-size: 11px; letter-spacing: 2px; color: #aaa; margin-bottom: 15px; font-weight: bold;">
                     [ DAILY & WEEKLY GOALS ]
@@ -291,6 +298,7 @@
                 
                 <div class="charts-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     
+                    <!-- DONUT KIRI: DAILY -->
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div style="font-size: 9px; font-weight: bold; color: #fff;">DAILY EXP GOAL</div>
                         <div id="db-daily-percent" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 0% )</div>
@@ -327,6 +335,7 @@
                         <div id="db-daily-remains" style="font-size: 8px; color: #aaa; white-space: nowrap;">... EXP REMAINING</div>
                     </div>
 
+                    <!-- DONUT KANAN: WEEKLY -->
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <div style="font-size: 9px; font-weight: bold; color: #fff;">WEEKLY EXP GOAL</div>
                         <div id="db-weekly-percent" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 0% )</div>
@@ -366,8 +375,10 @@
                 </div>
             </div>
 
+            <!-- ROW 3: STATUS BARS -->
             <div class="status-grid">
                 
+                <!-- HEALTH -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
                     <div id="db-health-lvl" style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL ...</div>
@@ -377,6 +388,7 @@
                     </div>
                 </div>
 
+                <!-- MENTAL -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
                     <div id="db-mental-lvl" style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL ...</div>
@@ -386,6 +398,7 @@
                     </div>
                 </div>
 
+                <!-- SOCIAL -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
                     <div id="db-social-lvl" style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL ...</div>
@@ -395,6 +408,7 @@
                     </div>
                 </div>
 
+                <!-- KNOWLEDGE -->
                 <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
                     <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
                     <div id="db-knowledge-lvl" style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL ...</div>
@@ -406,6 +420,7 @@
 
             </div>
 
+            <!-- ROW 4: GROWTH & WEALTH -->
             <div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
                 
                 <div class="card-box" style="padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-sizing: border-box; overflow: hidden;">
@@ -417,6 +432,7 @@
                             <div style="position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed #444; transform: translateY(-50%); z-index: 0;"></div>
                             <div style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed #444; transform: translateX(-50%); z-index: 0;"></div>
                             
+                            <!-- Radar Poligon Dinamis menggunakan CSS Clip-Path -->
                             <div id="db-radar-poly" style="
                                 position: absolute;
                                 width: 100%;
@@ -484,6 +500,7 @@
             <div id="current-time" style="font-size:18px; color:#00f0ff; font-weight:bold; letter-spacing:2px;"></div>
         </div>
         
+        <!-- ⚔️ PANEL KANAN: QUEST LOG -->
         <div id="quests-panel" class="panel">
             
             <div class="card-box" style="padding: 16px 8px;">
@@ -798,12 +815,18 @@
                 </div>
             </div>
 
-        </div> </div> <nav class="bottom-nav">
+        </div> <!-- /#quests-panel -->
+
+    </div> <!-- /.dashboard-container -->
+
+    <!-- NAVIGATION MENU BAR -->
+    <nav class="bottom-nav">
         <button id="btn-wealth" class="nav-btn" onclick="switchTab('wealth-panel', 'btn-wealth')">WEALTH LOG</button>
         <button id="btn-home" class="nav-btn active" onclick="switchTab('dashboard-panel', 'btn-home')">DASHBOARD</button>
         <button id="btn-quests" class="nav-btn" onclick="switchTab('quests-panel', 'btn-quests')">QUEST LOG</button>
     </nav>
 
+    <!-- LOGIKA JAVASCRIPT -->
     <script>
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
 
