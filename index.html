@@ -980,6 +980,7 @@ window.onload = function() {
             btn.classList.remove('active');
         });
         document.getElementById(activeButton).classList.add('active');
+        fetchGsheetDashboardData();
     }
 
     document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
