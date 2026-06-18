@@ -1066,31 +1066,28 @@
         document.getElementById("current-time").innerHTML = timeText;
     }
     
-    // ====================================================================
-    // PENARIK MEMORI UTAMA SAAT WINDOW ONLOAD
+// ====================================================================
+    // PERBAIKAN UTAMA: WINDOW ONLOAD (MEMASTIKAN TOMBOL NAVIGASI AKTIF)
     // ====================================================================
     window.onload = function() {
+        // 1. Jalankan sistem auto-reset tanggal
         autoResetQuest();
 
+        // 2. Jalankan jam realtime di bawah jika fungsinya ada
         if (typeof updateDateTime === "function") { 
             updateDateTime(); 
             setInterval(updateDateTime, 1000); 
         }
 
-        // Status panel aktif terakhir
+        // 3. Ambil memori halaman terakhir (Default ke Dashboard jika kosong)
         const activePanel = localStorage.getItem('activePanel') || 'dashboard-panel';
         const activeButton = localStorage.getItem('activeButton') || 'btn-home';
         
-        document.querySelectorAll('.panel').forEach(function(panel) {
-            panel.style.display = 'none';
-        });
-        document.getElementById(activePanel).style.display = 'flex';
-        document.querySelectorAll('.nav-btn').forEach(function(btn) {
-            btn.classList.remove('active');
-        });
-        document.getElementById(activeButton).classList.add('active');
+        // KUNCI PERBAIKAN: Buka halaman awal menggunakan fungsi switchTab resmi
+        // Ini memastikan seluruh tombol navigasi bawah di-registrasi ulang oleh browser dan aktif!
+        switchTab(activePanel, activeButton);
 
-        // Kembalikan tanda ceklis checkbox dari memori lokal
+        // 4. Kembalikan centang checkbox dari memori lokal HP/Laptop
         document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
             const questId = checkbox.id;
             const savedStatus = localStorage.getItem(questId);
@@ -1100,6 +1097,10 @@
                 checkbox.checked = false;
             }
         });
+
+        // 5. Hitung awal counter ceklis quest
+        countCheckedQuests();
+    };
 
         // JALANKAN LIVE SYNC GSHEET PERTAMA KALI
         fetchGSheetDashboardData();
