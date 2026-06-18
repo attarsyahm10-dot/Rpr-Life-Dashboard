@@ -842,7 +842,6 @@
     // ====================================================================
     function fetchGSheetDashboardData() {
         const urlBacaStatus = APPS_SCRIPT_URL + "?aksi=baca_status";
-        
         console.log("Menarik data status karakter dari GSheet...");
         
         fetch(urlBacaStatus)
@@ -860,15 +859,13 @@
                 document.getElementById("db-level").innerText = "Level " + data.level;
                 document.getElementById("db-exp-ratio").innerText = data.current_exp + " / " + data.exp_next_level + " EXP";
                 
-                // Hitung persen progress bar EXP Utama
                 let expPercent = (data.current_exp / data.exp_next_level) * 100;
                 document.getElementById("db-exp-bar").style.width = (expPercent || 0) + "%";
                 
                 let expRemaining = data.exp_next_level - data.current_exp;
                 document.getElementById("db-exp-remaining-next").innerText = expRemaining + " EXP TO NEXT LEVEL";
 
-                // 2. ISI ROW 2: GOALS & ANIMASI DONUT
-                // --- Daily Donut ---
+                // 2. ISI ROW 2: GOALS & ANIMASI GRAFIK DONUT
                 let maxDaily = data.daily_exp + data.remaining_daily;
                 let dailyPercent = maxDaily > 0 ? Math.round((data.daily_exp / maxDaily) * 100) : 0;
                 document.getElementById("db-daily-percent").innerText = ( ${dailyPercent}% );
@@ -877,7 +874,6 @@
                 document.getElementById("db-daily-remains").innerText = data.remaining_daily + " EXP REMAINING";
                 document.getElementById("db-daily-donut").style.background = conic-gradient(#00f0ff 0% ${dailyPercent}%, #2a2514 ${dailyPercent}% 100%);
 
-                // --- Weekly Donut ---
                 let maxWeekly = data.weekly_exp + data.remaining_weekly;
                 let weeklyPercent = maxWeekly > 0 ? Math.round((data.weekly_exp / maxWeekly) * 100) : 0;
                 document.getElementById("db-weekly-percent").innerText = ( ${weeklyPercent}% );
@@ -887,36 +883,30 @@
                 document.getElementById("db-weekly-donut").style.background = conic-gradient(#00f0ff 0% ${weeklyPercent}%, #2a2514 ${weeklyPercent}% 100%);
 
                 // 3. ISI ROW 3: KOTAK STATUS BAR KATEGORI
-                // --- Health ---
                 document.getElementById("db-health-lvl").innerText = "LVL " + data.stat_health_lvl;
                 document.getElementById("db-health-ratio").innerText = data.stat_health_curr + "/1000";
                 document.getElementById("db-health-bar").style.width = (data.stat_health_curr / 10) + "%";
 
-                // --- Mental ---
                 document.getElementById("db-mental-lvl").innerText = "LVL " + data.stat_mental_lvl;
                 document.getElementById("db-mental-ratio").innerText = data.stat_mental_curr + "/1000";
                 document.getElementById("db-mental-bar").style.width = (data.stat_mental_curr / 10) + "%";
 
-                // --- Social ---
                 document.getElementById("db-social-lvl").innerText = "LVL " + data.stat_social_lvl;
                 document.getElementById("db-social-ratio").innerText = data.stat_social_curr + "/1000";
                 document.getElementById("db-social-bar").style.width = (data.stat_social_curr / 10) + "%";
 
-                // --- Knowledge ---
                 document.getElementById("db-knowledge-lvl").innerText = "LVL " + data.stat_knowledge_lvl;
                 document.getElementById("db-knowledge-ratio").innerText = data.stat_knowledge_curr + "/1000";
                 document.getElementById("db-knowledge-bar").style.width = (data.stat_knowledge_curr / 10) + "%";
 
-                // 4. UPDATE POLIGON RADAR GROWTH (Menggunakan Clip-Path Murni CSS)
-                // Konversi total exp akumulatif ke skala radar (Batas max diatur 2000 EXP untuk tarikan luar)
-                let hRad = 50 - Math.min((data.stat_health_exp / 2000) * 50, 50);    // Top (❤️)
-                let mRad = 50 + Math.min((data.stat_mental_exp / 2000) * 50, 50);    // Right (🧠)
-                let sRad = 50 + Math.min((data.stat_social_exp / 2000) * 50, 50);    // Bottom (👥)
-                let kRad = 50 - Math.min((data.stat_knowledge_exp / 2000) * 50, 50); // Left (📝)
-                
+                // 4. UPDATE POLIGON RADAR GROWTH
+                let hRad = 50 - Math.min((data.stat_health_exp / 2000) * 50, 50);
+                let mRad = 50 + Math.min((data.stat_mental_exp / 2000) * 50, 50);
+                let sRad = 50 + Math.min((data.stat_social_exp / 2000) * 50, 50);
+                let kRad = 50 - Math.min((data.stat_knowledge_exp / 2000) * 50, 50);
                 document.getElementById("db-radar-poly").style.clipPath = polygon(50% ${hRad}%, ${mRad}% 50%, 50% ${sRad}%, ${kRad}% 50%);
 
-                // 5. ISI DATA WEALTH (MUTASI KEUANGAN)
+                // 5. ISI DATA WEALTH
                 document.getElementById("db-inc-usd").innerText = data.income_usd;
                 document.getElementById("db-inc-idr").innerText = data.income_idr;
                 document.getElementById("db-exp-usd").innerText = data.expense_usd;
@@ -929,56 +919,59 @@
             .catch(error => console.error("Koneksi gagal saat membaca status:", error));
     }
 
-    // =========================
-    // HITUNG TOTAL QUEST YANG HARI INI CHECKED
-    // =========================
+    // ====================================================================
+    // FUNGSI: HITUNG TOTAL QUEST YANG HARI INI CHECKED
+    // ====================================================================
     function countCheckedQuests() {
         let checkedCount = 0;
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        if (checkboxes.length === 0) return;
+
+        checkboxes.forEach(cb => {
             if (cb.checked) checkedCount++;
         });
         const elementQuestsBox = document.getElementById("db-quests-done");
-        if(elementQuestsBox) elementQuestsBox.innerText = checkedCount;
+        if (elementQuestsBox) elementQuestsBox.innerText = checkedCount;
     }
 
-    // =========================
-    // NAVIGASI PANEL (SPA SYSTEM)
-    // =========================
+    // ====================================================================
+    // FUNGSI: NAVIGASI PANEL (SPA SYSTEM)
+    // ====================================================================
     function switchTab(panelId, buttonId) {
+        console.log("Navigasi dipanggil ke panel: " + panelId);
+        
         document.querySelectorAll('.panel').forEach(function(panel) {
             panel.style.display = 'none';
         });
 
-        document.getElementById(panelId).style.display = 'flex';
+        const targetPanel = document.getElementById(panelId);
+        if (targetPanel) targetPanel.style.display = 'flex';
 
         document.querySelectorAll('.nav-btn').forEach(function(btn) {
             btn.classList.remove('active');
         });
-
-        document.getElementById(buttonId).classList.add('active');
+        
+        const targetButton = document.getElementById(buttonId);
+        if (targetButton) targetButton.classList.add('active');
 
         localStorage.setItem('activePanel', panelId);
         localStorage.setItem('activeButton', buttonId);
         
-        // PENTING: Setiap masuk halaman dashboard, refresh data dari GSheet!
         if (panelId === 'dashboard-panel') {
             fetchGSheetDashboardData();
             countCheckedQuests();
         }
     }
 
-    // =========================
-    // HITUNG NOMOR MINGGU
-    // =========================
+    // ====================================================================
+    // FUNGSI: UTALITAS (MINGGU & RESET & WAKTU)
+    // ====================================================================
     function getWeekNumber(date) {
         const firstDay = new Date(date.getFullYear(), 0, 1);
         const days = Math.floor((date - firstDay) / 86400000);
         return Math.ceil((days + firstDay.getDay() + 1) / 7);
     }
 
-    // =========================
-    // RESET QUEST OTOMATIS
-    // =========================
     function autoResetQuest() {
         const today = new Date();
         const currentDate = today.getFullYear() + "-" +
@@ -989,7 +982,6 @@
         const lastDate = localStorage.getItem("lastDailyReset");
         const lastWeek = localStorage.getItem("lastWeeklyReset");
 
-        // DAILY RESET
         if (lastDate !== currentDate) {
             document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
                 if (cb.id.charAt(2) === "D") {
@@ -1000,7 +992,6 @@
             localStorage.setItem("lastDailyReset", currentDate);
         }
 
-        // WEEKLY RESET
         if (lastWeek !== currentWeek) {
             document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
                 if (cb.id.charAt(2) === "W") {
@@ -1012,29 +1003,22 @@
         }
     }
 
-    // =========================
-    // CHECKBOX DIKLIK (SINKRON KE GSHEET)
-    // =========================
     function handleQuestCheck(checkbox) {
         const questId = checkbox.id;
         const isChecked = checkbox.checked;
 
         localStorage.setItem(questId, isChecked.toString());
-        countCheckedQuests(); 
+        countCheckedQuests();
 
         const today = new Date();
         const formattedDate = today.getFullYear() + "-" +
                               String(today.getMonth() + 1).padStart(2, "0") + "-" +
                               String(today.getDate()).padStart(2, "0");
 
-        console.log("Mengirim Progres... ID: " + questId + " | Status: " + isChecked);
-
         fetch(APPS_SCRIPT_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 action: "updateQuest",
                 questId: questId,
@@ -1042,67 +1026,45 @@
                 date: formattedDate
             })
         })
-        .then(function() {
-            console.log("[SUKSES] ID " + questId + " tersimpan di GSheet.");
-            // Beri jeda 2.5 detik lalu tarik data ulang agar dashboard sinkron otomatis setelah klik quest
+        .then(() => {
+            console.log("[SUKSES] ID " + questId + " tersimpan.");
             setTimeout(fetchGSheetDashboardData, 2500);
         })
-        .catch(function(error) {
-            console.error("[ERROR] Gagal sinkronisasi:", error);
-        });
+        .catch(error => console.error("[ERROR] Gagal sinkronisasi:", error));
     }
 
     function updateDateTime() {
         const now = new Date();
         const dateText = now.toLocaleDateString("id-ID", {
-            weekday: "long",
-            day: "2-digit",
-            month: "long",
-            year: "numeric"
+            weekday: "long", day: "2-digit", month: "long", year: "numeric"
         });
         const timeText = now.toLocaleTimeString("id-ID");
-
-        document.getElementById("current-date").innerHTML = dateText;
-        document.getElementById("current-time").innerHTML = timeText;
+        
+        const elDate = document.getElementById("current-date");
+        const elTime = document.getElementById("current-time");
+        if (elDate) elDate.innerHTML = dateText;
+        if (elTime) elTime.innerHTML = timeText;
     }
     
-// ====================================================================
-    // PERBAIKAN UTAMA: WINDOW ONLOAD (MEMASTIKAN TOMBOL NAVIGASI AKTIF)
+    // ====================================================================
+    // EKSEKUSI RUNNING UTAMA SAAT WINDOW LOADED
     // ====================================================================
     window.onload = function() {
-        // 1. Jalankan sistem auto-reset tanggal
         autoResetQuest();
+        updateDateTime(); 
+        setInterval(updateDateTime, 1000); 
 
-        // 2. Jalankan jam realtime di bawah jika fungsinya ada
-        if (typeof updateDateTime === "function") { 
-            updateDateTime(); 
-            setInterval(updateDateTime, 1000); 
-        }
-
-        // 3. Ambil memori halaman terakhir (Default ke Dashboard jika kosong)
         const activePanel = localStorage.getItem('activePanel') || 'dashboard-panel';
         const activeButton = localStorage.getItem('activeButton') || 'btn-home';
         
-        // KUNCI PERBAIKAN: Buka halaman awal menggunakan fungsi switchTab resmi
-        // Ini memastikan seluruh tombol navigasi bawah di-registrasi ulang oleh browser dan aktif!
         switchTab(activePanel, activeButton);
 
-        // 4. Kembalikan centang checkbox dari memori lokal HP/Laptop
         document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
             const questId = checkbox.id;
             const savedStatus = localStorage.getItem(questId);
-            if (savedStatus === "true") {
-                checkbox.checked = true;
-            } else {
-                checkbox.checked = false;
-            }
+            checkbox.checked = (savedStatus === "true");
         });
 
-        // 5. Hitung awal counter ceklis quest
-        countCheckedQuests();
-    };
-
-        // JALANKAN LIVE SYNC GSHEET PERTAMA KALI
         fetchGSheetDashboardData();
         countCheckedQuests();
     };
