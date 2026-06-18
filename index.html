@@ -266,11 +266,11 @@
 
                 <!-- KOTAK 2: PROFIL ANAK AYAM -->
                 <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
-                    <span style="font-size: 22px; margin-bottom: 2px;">🐣</span>
+                    <span id="db-avatar" style="font-size: 22px; margin-bottom: 2px;">⏳</span>
                     <div style="font-size: 8px; white-space: nowrap; line-height: 1.2; text-align: center; width: 100%;">
                         <strong>Moch Attarsyah</strong><br>
-                        <span style="color: #aaa; font-size: 7.5px;">Rank - Novice</span><br>
-                        <span style="color: #00f0ff; font-weight: bold; font-size: 7.5px;">Level 1</span>
+                        <span id="db-rank" style="color: #aaa; font-size: 7.5px;">⏳</span><br>
+                        <span id="db-level" style="color: #00f0ff; font-weight: bold; font-size: 7.5px;">⏳</span>
                     </div>
                 </div>
 
@@ -863,6 +863,10 @@ function fetchGSheetDashboardData() {
                 // 4. Mengubah Rank (Sel B17)
                 if (document.getElementById("db-rank")) {
                     document.getElementById("db-rank").innerText = "Rank - " + data.rank;
+                }
+                                // 4. Mengubah Avatar (Sel D17)
+                if (data.profile_img_url && document.getElementById("db-avatar")) {
+                    document.getElementById("db-avatar").innerText = data.profile_img_url;
                 }
             }
         })
