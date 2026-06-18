@@ -261,7 +261,7 @@
                     <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">TOTAL EXP</div>
                     <div id="db-total-exp" style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">⏳</div>
                     <div style="font-size: 9px; color:#aaa; font-weight: bold; margin-bottom: 2px;">QUESTS</div>
-                    <div id="db-quests-completed" style="font-size: 12px; font-weight: bold;">⏳</div>
+                    <div id="db-quests" style="font-size: 12px; font-weight: bold;">⏳</div>
                 </div>
 
                 <!-- KOTAK 2: PROFIL ANAK AYAM -->
@@ -839,16 +839,38 @@
 function fetchGSheetDashboardData() {
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
     const urlBacaStatus = APPS_SCRIPT_URL + "?aksi=baca_status";
-
+    
+    console.log("Menarik data status karakter dari GSheet...");
+    
     fetch(urlBacaStatus)
         .then(response => response.json())
         .then(data => {
-            if (data && data.total_exp) {
-                document.getElementById("db-total-exp").innerText = data.total_exp;
+            if (data) {
+                console.log("Data berhasil diterima:", data);
+                
+                // 1. Mengubah Total EXP (Sel B3)
+                if (document.getElementById("db-total-exp")) {
+                    document.getElementById("db-total-exp").innerText = data.total_exp;
+                }
+                // 2. Mengubah Quests Completed (Sel B16)
+                if (document.getElementById("db-quests")) {
+                    document.getElementById("db-quests").innerText = data.quests_completed;
+                }
+                // 3. Mengubah Level (Sel B11)
+                if (document.getElementById("db-level")) {
+                    document.getElementById("db-level").innerText = "Level " + data.level;
+                }
+                // 4. Mengubah Rank (Sel B17)
+                if (document.getElementById("db-rank")) {
+                    document.getElementById("db-rank").innerText = "Rank - " + data.rank;
+                }
             }
         })
-        .catch(err => console.error("Gagal fetch:", err));
+        .catch(err => console.error("Gagal menjemput data GSheet:", err));
 }
+
+// Langsung jalankan di paling atas skrip
+fetchGSheetDashboardData();
 
 // LANGSUNG PANGGIL DI SINI TANPA MENUNGGU WINDOW.ONLOAD
 fetchGSheetDashboardData();
