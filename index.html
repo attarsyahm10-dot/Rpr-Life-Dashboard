@@ -865,8 +865,8 @@ function fetchGSheetDashboardData() {
                     document.getElementById("db-rank").innerText = "Rank - " + data.rank;
                 }
                                 // 4. Mengubah Avatar (Sel D17)
-                if (data.profile_img_url && document.getElementById("db-avatar")) {
-                    document.getElementById("db-avatar").innerText = data.profile_img_url;
+                if (data.profile && document.getElementById("db-avatar")) {
+                    document.getElementById("db-avatar").innerText = data.profile;
                 }
             }
         })
