@@ -980,7 +980,6 @@ window.onload = function() {
             btn.classList.remove('active');
         });
         document.getElementById(activeButton).classList.add('active');
-        fetchGsheetDashboardData();
     }
 
     document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
@@ -993,6 +992,13 @@ window.onload = function() {
             checkbox.checked = false;
         }
     });
+
+    // ====================================================================
+    // POSISI AMAN: DI LUAR JEBAKAN, HURUF BESAR S SESUAI FUNGSI UTAMA
+    // ====================================================================
+    if (typeof fetchGSheetDashboardData === "function") {
+        fetchGSheetDashboardData();
+    }
 };
 </script>
 </body>
