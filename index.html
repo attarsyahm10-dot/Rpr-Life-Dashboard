@@ -833,6 +833,25 @@
 
     <!-- LOGIKA JAVASCRIPT -->
 <script>
+    // ====================================================================
+// TARUH DI PALING ATAS SCRIPT BIAR LANGSUNG JALAN TANPA KETANGKUP EROR ATAS
+// ====================================================================
+function fetchGSheetDashboardData() {
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpZMKm8c15SZGSiNpuUNOv18Awyjelj7i7mjoM6rwYzLrkuzolooLmvFdLGP-pbhzf/exec";
+    const urlBacaStatus = APPS_SCRIPT_URL + "?aksi=baca_status";
+
+    fetch(urlBacaStatus)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.total_exp) {
+                document.getElementById("db-total-exp").innerText = data.total_exp;
+            }
+        })
+        .catch(err => console.error("Gagal fetch:", err));
+}
+
+// LANGSUNG PANGGIL DI SINI TANPA MENUNGGU WINDOW.ONLOAD
+fetchGSheetDashboardData();
     // =========================
     // GOOGLE APPS SCRIPT URL
     // =========================
@@ -992,13 +1011,6 @@ window.onload = function() {
             checkbox.checked = false;
         }
     });
-
-    // ====================================================================
-    // POSISI AMAN: DI LUAR JEBAKAN, HURUF BESAR S SESUAI FUNGSI UTAMA
-    // ====================================================================
-    if (typeof fetchGSheetDashboardData === "function") {
-        fetchGSheetDashboardData();
-    }
 };
 </script>
 </body>
