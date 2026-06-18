@@ -897,6 +897,45 @@ function fetchGSheetDashboardData() {
                     
                     expBar.style.width = persenProgress + "%";
                 }
+                // ==========================================
+                // 9. UPDATE DATA DAILY GOALS (KIRI)
+                // ==========================================
+                const dExp = Number(data.daily_exp) || 0;
+                const dRem = Number(data.remaining_daily) || 0;
+                const dTarget = dExp + dRem;
+                let dPercent = dTarget > 0 ? Math.round((dExp / dTarget) * 100) : 0;
+                if (dPercent > 100) dPercent = 100;
+
+                if (document.getElementById("db-daily-exp")) document.getElementById("db-daily-exp").innerText = dExp;
+                if (document.getElementById("db-daily-target")) document.getElementById("db-daily-target").innerText = dTarget;
+                if (document.getElementById("db-daily-rem")) document.getElementById("db-daily-rem").innerText = dRem;
+                if (document.getElementById("db-daily-per")) document.getElementById("db-daily-per").innerText = `( ${dPercent}% )`;
+                
+                // Mengubah warna putaran lingkaran sesuai persentase data asli
+                const dailyCircle = document.getElementById("db-daily-circle");
+                if (dailyCircle) {
+                    dailyCircle.style.background = `conic-gradient(#00f0ff 0% ${dPercent}%, #2a2514 ${dPercent}% 100%)`;
+                }
+
+                // ==========================================
+                // 10. UPDATE DATA WEEKLY GOALS (KANAN)
+                // ==========================================
+                const wExp = Number(data.weekly_exp) || 0;
+                const wRem = Number(data.remaining_weekly) || 0;
+                const wTarget = wExp + wRem;
+                let wPercent = wTarget > 0 ? Math.round((wExp / wTarget) * 100) : 0;
+                if (wPercent > 100) wPercent = 100;
+
+                if (document.getElementById("db-weekly-exp")) document.getElementById("db-weekly-exp").innerText = wExp;
+                if (document.getElementById("db-weekly-target")) document.getElementById("db-weekly-target").innerText = wTarget;
+                if (document.getElementById("db-weekly-rem")) document.getElementById("db-weekly-rem").innerText = wRem;
+                if (document.getElementById("db-weekly-per")) document.getElementById("db-weekly-per").innerText = `( ${wPercent}% )`;
+                
+                // Mengubah warna putaran lingkaran sesuai persentase data asli
+                const weeklyCircle = document.getElementById("db-weekly-circle");
+                if (weeklyCircle) {
+                    weeklyCircle.style.background = `conic-gradient(#00f0ff 0% ${wPercent}%, #2a2514 ${wPercent}% 100%)`;
+                }
             }
         })
         .catch(err => console.error("Gagal menjemput data GSheet:", err));
