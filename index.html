@@ -275,17 +275,19 @@
                 </div>
 
                 <!-- KOTAK 3: BAR EXP -->
-                <div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
-                    <div style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
-                        240 / 1000 EXP
-                    </div>
-                    <div class="mini-progress" style="width: 90%; margin: 6px auto; height: 6px;">
-                        <div class="mini-progress-fill" style="width: 24%;"></div>
-                    </div>
-                    <div style="font-size: 7px; color: #aaa; white-space: nowrap; text-align: center;">
-                        760 EXP TO NEXT LEVEL
-                    </div>
-                </div>
+<div class="card-box" style="padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 85px;">
+    <div style="font-size: 8.5px; white-space: nowrap; font-weight: bold; text-align: center;">
+        <span id="db-current-exp">⏳</span> / 1000 EXP
+    </div>
+    
+    <div class="mini-progress" style="width: 90%; margin: 6px auto; height: 6px;">
+        <div id="db-exp-bar" class="mini-progress-fill" style="width: 0%; transition: width 0.5s ease;"></div>
+    </div>
+    
+    <div style="font-size: 7px; color: #aaa; white-space: nowrap; text-align: center;">
+        <span id="db-rem-exp">⏳</span> EXP TO NEXT LEVEL
+    </div>
+</div>
 
             </div>
 
@@ -864,9 +866,37 @@ function fetchGSheetDashboardData() {
                 if (document.getElementById("db-rank")) {
                     document.getElementById("db-rank").innerText = "Rank - " + data.rank;
                 }
-                                // 4. Mengubah Avatar (Sel D17)
+                                // 5. Mengubah Avatar (Sel D17)
                 if (data.profile && document.getElementById("db-avatar")) {
                     document.getElementById("db-avatar").innerText = data.profile;
+                }
+                // ==========================================
+// ==========================================
+                // 6. Mengubah Angka EXP Sekarang (Kotak 3)
+                // ==========================================
+                if (document.getElementById("db-current-exp")) {
+                    document.getElementById("db-current-exp").innerText = data.current_exp;
+                }
+
+                // ==========================================
+                // 7. Menampilkan Sisa EXP Langsung Dari Sel B13 GSheet
+                // ==========================================
+                if (document.getElementById("db-rem-exp")) {
+                    document.getElementById("db-rem-exp").innerText = data.exp_next_level;
+                }
+
+                // ==========================================
+                // 8. Mengatur Lebar Bar (Tetap berasumsi batasnya 1000)
+                // ==========================================
+                const expBar = document.getElementById("db-exp-bar");
+                if (expBar && data.current_exp) {
+                    // Menghitung persentase bar berdasarkan EXP sekarang dibagi 1000
+                    let persenProgress = (data.current_exp / 1000) * 100;
+                    
+                    if (persenProgress > 100) persenProgress = 100;
+                    if (persenProgress < 0) persenProgress = 0;
+                    
+                    expBar.style.width = persenProgress + "%";
                 }
             }
         })
