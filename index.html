@@ -907,20 +907,22 @@ function fetchGSheetDashboardData() {
                     
                     expBar.style.width = persenProgress + "%";
                 }
+// ==========================================
+                // 9. UPDATE DATA DAILY GOALS (KIRI) - MAX 1000 RESET
                 // ==========================================
-                // 9. UPDATE DATA DAILY GOALS (KIRI)
-                // ==========================================
-                const dExp = Number(data.daily_exp) || 0;
-                const dRem = Number(data.remaining_daily) || 0;
-                const dTarget = dExp + dRem;
-                let dPercent = dTarget > 0 ? Math.round((dExp / dTarget) * 100) : 0;
+                let dExpRaw = Number(data.daily_exp) || 0;
+                let dRem = Number(data.remaining_daily) || 0;
+                
+                // Efek Reset: Jika dExpRaw = 1250, dExp akan menjadi 250
+                let dExp = dExpRaw % 1000; 
+                let dTarget = 1000; // Dikunci maksimal lingkaran di 1000
+                
+                let dPercent = Math.round((dExp / dTarget) * 100);
                 if (dPercent > 100) dPercent = 100;
 
                 if (document.getElementById("db-daily-exp")) document.getElementById("db-daily-exp").innerText = dExp;
                 if (document.getElementById("db-daily-target")) document.getElementById("db-daily-target").innerText = dTarget;
-                // Mengikuti format asli: "X EXP REMAINING"
                 if (document.getElementById("db-daily-rem")) document.getElementById("db-daily-rem").innerText = `${dRem} EXP REMAINING`;
-                // Mengikuti format asli: "( X% )"
                 if (document.getElementById("db-daily-per")) document.getElementById("db-daily-per").innerText = `( ${dPercent}% )`;
                 
                 const dailyCircle = document.getElementById("db-daily-circle");
@@ -929,19 +931,21 @@ function fetchGSheetDashboardData() {
                 }
 
                 // ==========================================
-                // 10. UPDATE DATA WEEKLY GOALS (KANAN)
+                // 10. UPDATE DATA WEEKLY GOALS (KANAN) - MAX 1000 RESET
                 // ==========================================
-                const wExp = Number(data.weekly_exp) || 0;
-                const wRem = Number(data.remaining_weekly) || 0;
-                const wTarget = wExp + wRem;
-                let wPercent = wTarget > 0 ? Math.round((wExp / wTarget) * 100) : 0;
+                let wExpRaw = Number(data.weekly_exp) || 0;
+                let wRem = Number(data.remaining_weekly) || 0;
+                
+                // Efek Reset: Jika wExpRaw = 2100, wExp akan menjadi 100
+                let wExp = wExpRaw % 1000; 
+                let wTarget = 1000; // Dikunci maksimal lingkaran di 1000
+                
+                let wPercent = Math.round((wExp / wTarget) * 100);
                 if (wPercent > 100) wPercent = 100;
 
                 if (document.getElementById("db-weekly-exp")) document.getElementById("db-weekly-exp").innerText = wExp;
                 if (document.getElementById("db-weekly-target")) document.getElementById("db-weekly-target").innerText = wTarget;
-                // Mengikuti format asli: "X EXP REMAINING"
                 if (document.getElementById("db-weekly-rem")) document.getElementById("db-weekly-rem").innerText = `${wRem} EXP REMAINING`;
-                // Mengikuti format asli: "( X% )"
                 if (document.getElementById("db-weekly-per")) document.getElementById("db-weekly-per").innerText = `( ${wPercent}% )`;
                 
                 const weeklyCircle = document.getElementById("db-weekly-circle");
