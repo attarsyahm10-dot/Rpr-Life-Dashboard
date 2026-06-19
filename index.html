@@ -975,7 +975,7 @@ function fetchGSheetDashboardData() {
                 // --- B. MENTAL ---
                 let mExpRaw = Number(data.stat_mental_exp) || 0;
                 let mLvl = data.stat_mental_lvl || 1;
-                let mExpRaw = mExpRaw % 1000;
+                let mExp = mExpRaw % 1000;
                 let mPercent = (mExp / 1000) * 100;
                 if (document.getElementById("db-mental-lvl")) document.getElementById("db-mental-lvl").innerText = `LVL ${mLvl}`;
                 if (document.getElementById("db-mental-exp")) document.getElementById("db-mental-exp").innerText = `${mExp}/1000`;
