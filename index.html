@@ -998,6 +998,7 @@ function fetchGSheetDashboardData() {
                 if (document.getElementById("db-know-lvl")) document.getElementById("db-know-lvl").innerText = `LVL ${kLvl}`;
                 if (document.getElementById("db-know-exp")) document.getElementById("db-know-exp").innerText = `${kExp}/1000`;
                 if (document.getElementById("db-know-bar")) document.getElementById("db-know-bar").style.width = `${kPercent > 100 ? 100 : kPercent}%`;
+                updateSpiderChart(hCurr, mCurr, sCurr, kCurr);
             }
         })
         .catch(err => console.error("Gagal menjemput data GSheet:", err));
