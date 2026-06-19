@@ -964,32 +964,32 @@ function fetchGSheetDashboardData() {
                 // ==========================================
                 
                 // --- A. HEALTH ---
-                let hExp = Number(data.health_exp) || 0;
-                let hLvl = data.health_level || 1;
+                let hExp = Number(data.stat_health_exp) || 0;
+                let hLvl = data.stat_health_level || 1;
                 let hPercent = (hExp / 1000) * 100;
                 if (document.getElementById("db-health-lvl")) document.getElementById("db-health-lvl").innerText = `LVL ${hLvl}`;
                 if (document.getElementById("db-health-exp")) document.getElementById("db-health-exp").innerText = `${hExp}/1000`;
                 if (document.getElementById("db-health-bar")) document.getElementById("db-health-bar").style.width = `${hPercent > 100 ? 100 : hPercent}%`;
 
                 // --- B. MENTAL ---
-                let mExp = Number(data.mental_exp) || 0;
-                let mLvl = data.mental_level || 1;
+                let mExp = Number(data.stat_mental_exp) || 0;
+                let mLvl = data.stat_mental_level || 1;
                 let mPercent = (mExp / 1000) * 100;
                 if (document.getElementById("db-mental-lvl")) document.getElementById("db-mental-lvl").innerText = `LVL ${mLvl}`;
                 if (document.getElementById("db-mental-exp")) document.getElementById("db-mental-exp").innerText = `${mExp}/1000`;
                 if (document.getElementById("db-mental-bar")) document.getElementById("db-mental-bar").style.width = `${mPercent > 100 ? 100 : mPercent}%`;
 
                 // --- C. SOCIAL ---
-                let sExp = Number(data.social_exp) || 0;
-                let sLvl = data.social_level || 1;
+                let sExp = Number(data.stat_social_exp) || 0;
+                let sLvl = data.stat_social_level || 1;
                 let sPercent = (sExp / 1000) * 100;
                 if (document.getElementById("db-social-lvl")) document.getElementById("db-social-lvl").innerText = `LVL ${sLvl}`;
                 if (document.getElementById("db-social-exp")) document.getElementById("db-social-exp").innerText = `${sExp}/1000`;
                 if (document.getElementById("db-social-bar")) document.getElementById("db-social-bar").style.width = `${sPercent > 100 ? 100 : sPercent}%`;
 
                 // --- D. KNOWLEDGE ---
-                let kExp = Number(data.knowledge_exp) || 0;
-                let kLvl = data.knowledge_level || 1;
+                let kExp = Number(data.stat_knowledge_exp) || 0;
+                let kLvl = data.stat_knowledge_level || 1;
                 let kPercent = (kExp / 1000) * 100;
                 if (document.getElementById("db-know-lvl")) document.getElementById("db-know-lvl").innerText = `LVL ${kLvl}`;
                 if (document.getElementById("db-know-exp")) document.getElementById("db-know-exp").innerText = `${kExp}/1000`;
