@@ -238,17 +238,40 @@
     <div class="dashboard-container">
 
         <!-- PANEL KIRI: WEALTH LOG -->
-        <div id="wealth-panel" class="panel">
-            <div class="card-box" style="padding: 16px 8px;">
-                <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">
-                    [ WEALTH DATABASE LOG ]
-                </div>
-                <div style="font-size: 10px; color: #aaa; text-align: left; line-height: 1.6;">
-                    • Tempat input transaksi harian akan ditaruh di sini.<br>
-                    • Menghubungkan mutasi keuangan langsung ke Google Sheet.
-                </div>
-            </div>
-        </div>
+<!-- Ganti semua isi di dalam div id="wealth-panel" dengan ini: -->
+<div class="card-box" style="padding: 16px 8px;">
+    <div style="font-size: 11px; letter-spacing: 2px; color: #00f0ff; margin-bottom: 15px; font-weight: bold;">[ WEALTH DATABASE LOG ]</div>
+    
+    <!-- Input Tanggal -->
+    <div style="margin-bottom: 10px;">
+        <label style="font-size: 9px; color: #666;">TANGGAL</label>
+        <input type="date" id="input-wealth-date" style="width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 5px; font-size: 12px;">
+    </div>
+
+    <!-- Input Jenis -->
+    <div style="margin-bottom: 10px;">
+        <label style="font-size: 9px; color: #666;">JENIS</label>
+        <select id="input-wealth-type" style="width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 5px; font-size: 12px;">
+            <option value="INCOME">INCOME</option>
+            <option value="EXPENSE">EXPENSE</option>
+        </select>
+    </div>
+
+    <!-- Input Jumlah -->
+    <div style="margin-bottom: 10px;">
+        <label style="font-size: 9px; color: #666;">JUMLAH</label>
+        <input type="number" id="input-wealth-amount" placeholder="0" style="width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 5px; font-size: 12px;">
+    </div>
+
+    <!-- Input Catatan -->
+    <div style="margin-bottom: 15px;">
+        <label style="font-size: 9px; color: #666;">CATATAN</label>
+        <input type="text" id="input-wealth-note" placeholder="Tulis sesuatu..." style="width: 100%; background: #111; border: 1px solid #333; color: #fff; padding: 5px; font-size: 12px;">
+    </div>
+
+    <!-- Tombol -->
+    <button onclick="submitWealthLog()" style="width: 100%; background: #00f0ff; color: #000; border: none; padding: 8px; font-weight: bold; cursor: pointer;">KIRIM DATA</button>
+</div>
 
         <!-- PANEL TENGAH: DASHBOARD / HOME -->
         <div id="dashboard-panel" class="panel">
