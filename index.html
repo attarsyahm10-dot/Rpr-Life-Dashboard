@@ -1253,6 +1253,46 @@ else if (data.action === "addWealthLog") {
         "result": "success"
       })).setMimeType(ContentService.MimeType.JSON);
     }
+    function submitWealthLog() {
+    try {
+        let dateInput = document.getElementById("input-wealth-date");
+        let typeInput = document.getElementById("input-wealth-type");
+        let amountInput = document.getElementById("input-wealth-amount");
+        let noteInput = document.getElementById("input-wealth-note");
+
+        if (!dateInput || !amountInput || !noteInput) return;
+
+        let date = dateInput.value;
+        let type = typeInput.value;
+        let amount = amountInput.value;
+        let note = noteInput.value;
+
+        // Pastikan isi di dalam JSON.stringify ini lengkap seperti di bawah:
+        fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", // Tetap pakai ini agar tidak terbentur masalah CORS browser
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                action: "addWealthLog", // <<-- WAJIB ADA INI BIAR APPS SCRIPT KAGAK BINGUNG
+                date: date,
+                type: type,
+                amount: amount,
+                note: note
+            })
+        }).then(() => {
+            alert("Data berhasil dicatat!");
+            // Form langsung otomatis bersih kembali
+            amountInput.value = "";
+            noteInput.value = "";
+        }).catch(err => {
+            console.error("Gagal mengirim data:", err);
+        });
+    } catch (error) {
+        console.error("Error submitWealthLog:", error);
+    }
+}
 </script>
 </body>
 </html>
