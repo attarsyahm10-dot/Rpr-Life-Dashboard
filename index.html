@@ -386,47 +386,43 @@
             <!-- ROW 3: STATUS BARS -->
             <div class="status-grid">
                 
-                <!-- HEALTH -->
-                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">HEALTH ❤️</div>
-                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
-                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                        <div class="mini-progress-fill" style="width: 12%;"></div>
-                    </div>
-                </div>
+<div class="stats-grid" style="..."> <div class="card-box" style="...">
+        <div style="font-size: 9px; font-weight: bold; color: #fff;">HEALTH ❤️</div>
+        <div id="db-health-lvl" style="font-size: 7px; color: #aaa; margin: 2px 0;">LVL ⏳</div>
+        <div id="db-health-exp" style="font-size: 8.5px; color: #00f0ff; font-weight: bold;">⏳/1000</div>
+        <div class="mini-progress" style="...">
+            <div id="db-health-bar" class="mini-progress-fill" style="width: 0%; transition: width 0.5s;"></div>
+        </div>
+    </div>
 
-                <!-- MENTAL -->
-                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">MENTAL 🧠</div>
-                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
-                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                        <div class="mini-progress-fill" style="width: 0%;"></div>
-                    </div>
-                </div>
+    <div class="card-box" style="...">
+        <div style="font-size: 9px; font-weight: bold; color: #fff;">MENTAL 🧠</div>
+        <div id="db-mental-lvl" style="font-size: 7px; color: #aaa; margin: 2px 0;">LVL ⏳</div>
+        <div id="db-mental-exp" style="font-size: 8.5px; color: #00f0ff; font-weight: bold;">⏳/1000</div>
+        <div class="mini-progress" style="...">
+            <div id="db-mental-bar" class="mini-progress-fill" style="width: 0%; transition: width 0.5s;"></div>
+        </div>
+    </div>
 
-                <!-- SOCIAL -->
-                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">SOCIAL 👥</div>
-                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">120/1000</div>
-                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                        <div class="mini-progress-fill" style="width: 12%;"></div>
-                    </div>
-                </div>
+    <div class="card-box" style="...">
+        <div style="font-size: 9px; font-weight: bold; color: #fff;">SOCIAL 👥</div>
+        <div id="db-social-lvl" style="font-size: 7px; color: #aaa; margin: 2px 0;">LVL ⏳</div>
+        <div id="db-social-exp" style="font-size: 8.5px; color: #00f0ff; font-weight: bold;">⏳/1000</div>
+        <div class="mini-progress" style="...">
+            <div id="db-social-bar" class="mini-progress-fill" style="width: 0%; transition: width 0.5s;"></div>
+        </div>
+    </div>
 
-                <!-- KNOWLEDGE -->
-                <div class="card-box" style="padding: 8px 2px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 65px;">
-                    <div style="font-size: 8px; font-weight: bold; white-space: nowrap;">KNOWL. 📝</div>
-                    <div style="font-size: 7.5px; color: #aaa; margin: 2px 0; white-space: nowrap;">LVL 1</div>
-                    <div style="font-size: 7.5px; color: #00f0ff; white-space: nowrap;">0/1000</div>
-                    <div class="mini-progress" style="width: 85%; margin-top: 4px; height: 5px;">
-                        <div class="mini-progress-fill" style="width: 0%;"></div>
-                    </div>
-                </div>
+    <div class="card-box" style="...">
+        <div style="font-size: 9px; font-weight: bold; color: #fff;">KNOWL. 📝</div>
+        <div id="db-know-lvl" style="font-size: 7px; color: #aaa; margin: 2px 0;">LVL ⏳</div>
+        <div id="db-know-exp" style="font-size: 8.5px; color: #00f0ff; font-weight: bold;">⏳/1000</div>
+        <div class="mini-progress" style="...">
+            <div id="db-know-bar" class="mini-progress-fill" style="width: 0%; transition: width 0.5s;"></div>
+        </div>
+    </div>
 
-            </div>
+</div>
 
             <!-- ROW 4: GROWTH & WEALTH -->
             <div class="main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; box-sizing: border-box;">
@@ -948,6 +944,41 @@ function fetchGSheetDashboardData() {
                 if (weeklyCircle) {
                     weeklyCircle.style.background = `conic-gradient(#00f0ff 0% ${wPercent}%, #2a2514 ${wPercent}% 100%)`;
                 }
+                // ==========================================
+                // 11. UPDATE DATA 4 STATS (HEALTH, MENTAL, SOCIAL, KNOWLEDGE)
+                // ==========================================
+                
+                // --- A. HEALTH ---
+                let hExp = Number(data.health_exp) || 0;
+                let hLvl = data.health_level || 1;
+                let hPercent = (hExp / 1000) * 100;
+                if (document.getElementById("db-health-lvl")) document.getElementById("db-health-lvl").innerText = `LVL ${hLvl}`;
+                if (document.getElementById("db-health-exp")) document.getElementById("db-health-exp").innerText = `${hExp}/1000`;
+                if (document.getElementById("db-health-bar")) document.getElementById("db-health-bar").style.width = `${hPercent > 100 ? 100 : hPercent}%`;
+
+                // --- B. MENTAL ---
+                let mExp = Number(data.mental_exp) || 0;
+                let mLvl = data.mental_level || 1;
+                let mPercent = (mExp / 1000) * 100;
+                if (document.getElementById("db-mental-lvl")) document.getElementById("db-mental-lvl").innerText = `LVL ${mLvl}`;
+                if (document.getElementById("db-mental-exp")) document.getElementById("db-mental-exp").innerText = `${mExp}/1000`;
+                if (document.getElementById("db-mental-bar")) document.getElementById("db-mental-bar").style.width = `${mPercent > 100 ? 100 : mPercent}%`;
+
+                // --- C. SOCIAL ---
+                let sExp = Number(data.social_exp) || 0;
+                let sLvl = data.social_level || 1;
+                let sPercent = (sExp / 1000) * 100;
+                if (document.getElementById("db-social-lvl")) document.getElementById("db-social-lvl").innerText = `LVL ${sLvl}`;
+                if (document.getElementById("db-social-exp")) document.getElementById("db-social-exp").innerText = `${sExp}/1000`;
+                if (document.getElementById("db-social-bar")) document.getElementById("db-social-bar").style.width = `${sPercent > 100 ? 100 : sPercent}%`;
+
+                // --- D. KNOWLEDGE ---
+                let kExp = Number(data.knowledge_exp) || 0;
+                let kLvl = data.knowledge_level || 1;
+                let kPercent = (kExp / 1000) * 100;
+                if (document.getElementById("db-know-lvl")) document.getElementById("db-know-lvl").innerText = `LVL ${kLvl}`;
+                if (document.getElementById("db-know-exp")) document.getElementById("db-know-exp").innerText = `${kExp}/1000`;
+                if (document.getElementById("db-know-bar")) document.getElementById("db-know-bar").style.width = `${kPercent > 100 ? 100 : kPercent}%`;
             }
         })
         .catch(err => console.error("Gagal menjemput data GSheet:", err));
