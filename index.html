@@ -303,7 +303,7 @@
         <div style="display: flex; flex-direction: column; align-items: center;">
             <div style="font-size: 9px; font-weight: bold; color: #fff;">DAILY EXP GOAL</div>
             <!-- Hanya selipkan id di div persentase -->
-            <div id="db-daily-per" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 40% )</div>
+            <div id="db-daily-per" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( ⏳ )</div>
             
             <!-- Hanya selipkan id di div lingkaran background -->
             <div id="db-daily-circle" style="
@@ -329,22 +329,22 @@
                     line-height: 1.3;
                 ">
                     <!-- Hanya selipkan id di angka atas -->
-                    <span id="db-daily-exp" style="font-weight: bold; color: #fff;">40</span>
+                    <span id="db-daily-exp" style="font-weight: bold; color: #fff;">⏳</span>
                     <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
                     <!-- Hanya selipkan id di angka bawah -->
-                    <span id="db-daily-target" style="color: #aaa; font-size: 9px;">100</span>
+                    <span id="db-daily-target" style="color: #aaa; font-size: 9px;">1080</span>
                 </div>
             </div>
             
             <!-- Hanya selipkan id di div teks remaining bawah -->
-            <div id="db-daily-rem" style="font-size: 8px; color: #aaa; white-space: nowrap;">60 EXP REMAINING</div>
+            <div id="db-daily-rem" style="font-size: 8px; color: #aaa; white-space: nowrap;">⏳ EXP REMAINING</div>
         </div>
 
         <!-- DONUT KANAN: WEEKLY -->
         <div style="display: flex; flex-direction: column; align-items: center;">
             <div style="font-size: 9px; font-weight: bold; color: #fff;">WEEKLY EXP GOAL</div>
             <!-- Hanya selipkan id di div persentase -->
-            <div id="db-weekly-per" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( 50% )</div>
+            <div id="db-weekly-per" style="font-size: 9px; color: #00f0ff; margin-top: 2px;">( ⏳ )</div>
             
             <!-- Hanya selipkan id di div lingkaran background -->
             <div id="db-weekly-circle" style="
@@ -370,15 +370,15 @@
                     line-height: 1.3;
                 ">
                     <!-- Hanya selipkan id di angka atas -->
-                    <span id="db-weekly-exp" style="font-weight: bold; color: #fff;">350</span>
+                    <span id="db-weekly-exp" style="font-weight: bold; color: #fff;">⏳</span>
                     <div style="width: 30px; border-top: 1px solid #555; margin: 2px 0;"></div>
                     <!-- Hanya selipkan id di angka bawah -->
-                    <span id="db-weekly-target" style="color: #aaa; font-size: 9px;">700</span>
+                    <span id="db-weekly-target" style="color: #aaa; font-size: 9px;">1110</span>
                 </div>
             </div>
             
             <!-- Hanya selipkan id di div teks remaining bawah -->
-            <div id="db-weekly-rem" style="font-size: 8px; color: #aaa; white-space: nowrap;">350 EXP REMAINING</div>
+            <div id="db-weekly-rem" style="font-size: 8px; color: #aaa; white-space: nowrap;">⏳ EXP REMAINING</div>
         </div>
 
     </div>
@@ -908,21 +908,19 @@ function fetchGSheetDashboardData() {
                     expBar.style.width = persenProgress + "%";
                 }
 // ==========================================
-                // 9. UPDATE DATA DAILY GOALS (KIRI) - MAX 1000 RESET
+                // 9. UPDATE DATA DAILY GOALS (KIRI)
                 // ==========================================
-                let dExpRaw = Number(data.daily_exp) || 0;
-                let dRem = Number(data.remaining_daily) || 0;
-                
-                // Efek Reset: Jika dExpRaw = 1250, dExp akan menjadi 250
-                let dExp = dExpRaw % 1000; 
-                let dTarget = 1000; // Dikunci maksimal lingkaran di 1000
-                
-                let dPercent = Math.round((dExp / dTarget) * 100);
+                const dExp = Number(data.daily_exp) || 0;
+                const dRem = Number(data.remaining_daily) || 0;
+                const dTarget = dExp + dRem;
+                let dPercent = dTarget > 0 ? Math.round((dExp / dTarget) * 100) : 0;
                 if (dPercent > 100) dPercent = 100;
 
                 if (document.getElementById("db-daily-exp")) document.getElementById("db-daily-exp").innerText = dExp;
                 if (document.getElementById("db-daily-target")) document.getElementById("db-daily-target").innerText = dTarget;
+                // Mengikuti format asli: "X EXP REMAINING"
                 if (document.getElementById("db-daily-rem")) document.getElementById("db-daily-rem").innerText = `${dRem} EXP REMAINING`;
+                // Mengikuti format asli: "( X% )"
                 if (document.getElementById("db-daily-per")) document.getElementById("db-daily-per").innerText = `( ${dPercent}% )`;
                 
                 const dailyCircle = document.getElementById("db-daily-circle");
@@ -931,21 +929,19 @@ function fetchGSheetDashboardData() {
                 }
 
                 // ==========================================
-                // 10. UPDATE DATA WEEKLY GOALS (KANAN) - MAX 1000 RESET
+                // 10. UPDATE DATA WEEKLY GOALS (KANAN)
                 // ==========================================
-                let wExpRaw = Number(data.weekly_exp) || 0;
-                let wRem = Number(data.remaining_weekly) || 0;
-                
-                // Efek Reset: Jika wExpRaw = 2100, wExp akan menjadi 100
-                let wExp = wExpRaw % 1000; 
-                let wTarget = 1000; // Dikunci maksimal lingkaran di 1000
-                
-                let wPercent = Math.round((wExp / wTarget) * 100);
+                const wExp = Number(data.weekly_exp) || 0;
+                const wRem = Number(data.remaining_weekly) || 0;
+                const wTarget = wExp + wRem;
+                let wPercent = wTarget > 0 ? Math.round((wExp / wTarget) * 100) : 0;
                 if (wPercent > 100) wPercent = 100;
 
                 if (document.getElementById("db-weekly-exp")) document.getElementById("db-weekly-exp").innerText = wExp;
                 if (document.getElementById("db-weekly-target")) document.getElementById("db-weekly-target").innerText = wTarget;
+                // Mengikuti format asli: "X EXP REMAINING"
                 if (document.getElementById("db-weekly-rem")) document.getElementById("db-weekly-rem").innerText = `${wRem} EXP REMAINING`;
+                // Mengikuti format asli: "( X% )"
                 if (document.getElementById("db-weekly-per")) document.getElementById("db-weekly-per").innerText = `( ${wPercent}% )`;
                 
                 const weeklyCircle = document.getElementById("db-weekly-circle");
