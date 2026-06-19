@@ -1021,6 +1021,21 @@ function fetchGSheetDashboardData() {
                 if (document.getElementById("db-know-lvl")) document.getElementById("db-know-lvl").innerText = `LVL ${kLvl}`;
                 if (document.getElementById("db-know-exp")) document.getElementById("db-know-exp").innerText = `${kExp}/1000`;
                 if (document.getElementById("db-know-bar")) document.getElementById("db-know-bar").style.width = `${kPercent > 100 ? 100 : kPercent}%`;
+                // ==========================================
+                // [FITUR BARU] SINKRONISASI COCH WEALTH LOG
+                // ==========================================
+                if (document.getElementById("db-wealth-income-idr")) document.getElementById("db-wealth-income-idr").innerText = data.income_idr;
+                if (document.getElementById("db-wealth-income-usd")) document.getElementById("db-wealth-income-usd").innerText = data.income_usd;
+                
+                if (document.getElementById("db-wealth-expense-idr")) document.getElementById("db-wealth-expense-idr").innerText = data.expense_idr;
+                if (document.getElementById("db-wealth-expense-usd")) document.getElementById("db-wealth-expense-usd").innerText = data.expense_usd;
+                
+                if (document.getElementById("db-wealth-saving-idr")) document.getElementById("db-wealth-saving-idr").innerText = data.saving_idr;
+                if (document.getElementById("db-wealth-saving-usd")) document.getElementById("db-wealth-saving-usd").innerText = data.saving_usd;
+                
+                if (document.getElementById("db-wealth-spendable-idr")) document.getElementById("db-wealth-spendable-idr").innerText = data.spendable_idr;
+                if (document.getElementById("db-wealth-spendable-usd")) document.getElementById("db-wealth-spendable-usd").innerText = data.spendable_usd;
+               
                 updateSpiderChart(hCurr, mCurr, sCurr, kCurr);
             }
         })
@@ -1192,21 +1207,6 @@ window.onload = function() {
         }
     });
 };
-
-// ==========================================
-                // [FITUR BARU] SINKRONISASI COCH WEALTH LOG
-                // ==========================================
-                if (document.getElementById("db-wealth-income-idr")) document.getElementById("db-wealth-income-idr").innerText = data.income_idr;
-                if (document.getElementById("db-wealth-income-usd")) document.getElementById("db-wealth-income-usd").innerText = data.income_usd;
-                
-                if (document.getElementById("db-wealth-expense-idr")) document.getElementById("db-wealth-expense-idr").innerText = data.expense_idr;
-                if (document.getElementById("db-wealth-expense-usd")) document.getElementById("db-wealth-expense-usd").innerText = data.expense_usd;
-                
-                if (document.getElementById("db-wealth-saving-idr")) document.getElementById("db-wealth-saving-idr").innerText = data.saving_idr;
-                if (document.getElementById("db-wealth-saving-usd")) document.getElementById("db-wealth-saving-usd").innerText = data.saving_usd;
-                
-                if (document.getElementById("db-wealth-spendable-idr")) document.getElementById("db-wealth-spendable-idr").innerText = data.spendable_idr;
-                if (document.getElementById("db-wealth-spendable-usd")) document.getElementById("db-wealth-spendable-usd").innerText = data.spendable_usd;
     
 function updateSpiderChart(hCurr, mCurr, sCurr, kCurr) {
     // Batas maksimal dikunci di angka 1000 sesuai request kamu
