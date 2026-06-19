@@ -962,6 +962,7 @@ function fetchGSheetDashboardData() {
                 // --- A. HEALTH ---
                 let hExpRaw = Number(data.stat_health_exp) || 0;
                 let hLvl = data.stat_health_lvl || 1;
+                let hCurr = Number (data.stat_health_curr) || 0;
                 let hExp = hExpRaw % 1000;
                 let hPercent = (hExp / 1000) * 100;
                 if (document.getElementById("db-health-lvl")) document.getElementById("db-health-lvl").innerText = `LVL ${hLvl}`;
@@ -971,6 +972,7 @@ function fetchGSheetDashboardData() {
                 // --- B. MENTAL ---
                 let mExpRaw = Number(data.stat_mental_exp) || 0;
                 let mLvl = data.stat_mental_lvl || 1;
+                let mCurr = Number (data.stat_mental_curr) || 0;
                 let mExp = mExpRaw % 1000;
                 let mPercent = (mExp / 1000) * 100;
                 if (document.getElementById("db-mental-lvl")) document.getElementById("db-mental-lvl").innerText = `LVL ${mLvl}`;
@@ -980,6 +982,7 @@ function fetchGSheetDashboardData() {
                 // --- C. SOCIAL ---
                 let sExpRaw = Number(data.stat_social_exp) || 0;
                 let sLvl = data.stat_social_lvl || 1;
+                let sCurr = Number (data.stat_social_curr) || 0;
                 let sExp = sExpRaw % 1000;
                 let sPercent = (sExp / 1000) * 100;
                 if (document.getElementById("db-social-lvl")) document.getElementById("db-social-lvl").innerText = `LVL ${sLvl}`;
@@ -989,6 +992,7 @@ function fetchGSheetDashboardData() {
                 // --- D. KNOWLEDGE ---
                 let kExpRaw = Number(data.stat_knowledge_exp) || 0;
                 let kLvl = data.stat_knowledge_lvl || 1;
+                let kCurr = Number (data.stat_knowledge_curr) || 0;
                 let kExp = kExpRaw % 1000;
                 let kPercent = (kExp / 1000) * 100;
                 if (document.getElementById("db-know-lvl")) document.getElementById("db-know-lvl").innerText = `LVL ${kLvl}`;
@@ -1164,6 +1168,28 @@ window.onload = function() {
         }
     });
 };
+function updateSpiderChart(hCurr, mCurr, sCurr, kCurr) {
+    // Batas maksimal dikunci di angka 1000 sesuai request kamu
+    let maxTarget = 1000; 
+
+    // Hitung rasio (maksimal nilai 1 agar grafis tidak bocor keluar dari jaring)
+    let h = (hCurr > maxTarget ? maxTarget : hCurr) / maxTarget;
+    let m = (mCurr > maxTarget ? maxTarget : mCurr) / maxTarget;
+    let s = (sCurr > maxTarget ? maxTarget : sCurr) / maxTarget;
+    let k = (kCurr > maxTarget ? maxTarget : kCurr) / maxTarget;
+
+    // Hitung posisi koordinat X dan Y (Titik tengah di 50,50 dengan jangkauan radius luar max 35px)
+    let topY   = 50 - (h * 35); // Ke atas (HEALTH ❤️)
+    let rightX = 50 + (m * 35); // Ke kanan (MENTAL 🧠)
+    let botY   = 50 + (s * 35); // Ke bawah (SOCIAL 👥)
+    let leftX  = 50 - (k * 35); // Ke kiri (KNOWLEDGE 📝)
+
+    // Tembak koordinat baru ke polygon SVG id "spider-poly"
+    let poly = document.getElementById("spider-poly");
+    if (poly) {
+        poly.setAttribute("points", `50,${topY} ${rightX},50 50,${botY} ${leftX},50`);
+    }
+}
 </script>
 </body>
 </html>
