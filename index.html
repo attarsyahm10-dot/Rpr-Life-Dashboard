@@ -1289,6 +1289,10 @@ setTimeout(initWealthDate, 500);
         console.error("Error submitWealthLog:", error);
     }
 }
+    if(typeof updateDateTime === "function") {
+        updateDateTime();
+        setInterval(updateDateTime,1000);
+    }
 </script>
 </body>
 </html>
