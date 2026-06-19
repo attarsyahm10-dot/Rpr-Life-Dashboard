@@ -497,32 +497,32 @@
                         <div style="text-align: left; width: 100%;">
                             <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💵 Income</span>
                             <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$281</div>
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp4.5M</div>
+                                <div id="db-wealth-income-usd" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
+                                <div id="db-wealth-income-idr" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
                             </div>
                         </div>
 
                         <div style="text-align: left; width: 100%;">
                             <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💸 Expense</span>
                             <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$73</div>
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp1.2M</div>
+                                <div id="db-wealth-expense-usd" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
+                                <div id="db-wealth-expense-idr" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
                             </div>
                         </div>
 
                         <div style="text-align: left; width: 100%;">
                             <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">🏦 Saving</span>
                             <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">$28</div>
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">Rp450K</div>
+                                <div id="db-wealth-saving-usd" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
+                                <div id="db-wealth-saving-idr" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #ffffff; color: #ffffff; background: transparent;">⏳</div>
                             </div>
                         </div>
 
                         <div style="text-align: left; width: 100%;">
                             <span style="font-size: 8.5px; display: block; margin-bottom: 2px; white-space: nowrap;">💳 Spendable</span>
                             <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; width: 100%;">
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">$180</div>
-                                <div class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">Rp2.8M</div>
+                                <div id="db-wealth-spendable-usd" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">⏳</div>
+                                <div id="db-wealth-spendable-idr" class="wealth-value-box" style="margin:0; padding: 4px 2px; font-size: 8.5px; white-space: nowrap; text-align: center; border: 1px solid #00f0ff; color: #00f0ff; background: transparent;">⏳</div>
                             </div>
                         </div>
 
@@ -1192,6 +1192,22 @@ window.onload = function() {
         }
     });
 };
+
+// ==========================================
+                // [FITUR BARU] SINKRONISASI COCH WEALTH LOG
+                // ==========================================
+                if (document.getElementById("db-wealth-income-idr")) document.getElementById("db-wealth-income-idr").innerText = data.income_idr;
+                if (document.getElementById("db-wealth-income-usd")) document.getElementById("db-wealth-income-usd").innerText = data.income_usd;
+                
+                if (document.getElementById("db-wealth-expense-idr")) document.getElementById("db-wealth-expense-idr").innerText = data.expense_idr;
+                if (document.getElementById("db-wealth-expense-usd")) document.getElementById("db-wealth-expense-usd").innerText = data.expense_usd;
+                
+                if (document.getElementById("db-wealth-saving-idr")) document.getElementById("db-wealth-saving-idr").innerText = data.saving_idr;
+                if (document.getElementById("db-wealth-saving-usd")) document.getElementById("db-wealth-saving-usd").innerText = data.saving_usd;
+                
+                if (document.getElementById("db-wealth-spendable-idr")) document.getElementById("db-wealth-spendable-idr").innerText = data.spendable_idr;
+                if (document.getElementById("db-wealth-spendable-usd")) document.getElementById("db-wealth-spendable-usd").innerText = data.spendable_usd;
+    
 function updateSpiderChart(hCurr, mCurr, sCurr, kCurr) {
     // Batas maksimal dikunci di angka 1000 sesuai request kamu
     let maxTarget = 1000; 
