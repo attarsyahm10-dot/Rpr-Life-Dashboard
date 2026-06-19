@@ -1232,27 +1232,6 @@ function initWealthDate() {
 // Jalankan dengan jeda sedikit supaya HTML kamu selesai nge-render semua panel dulu
 setTimeout(initWealthDate, 500);
 
-else if (data.action === "addWealthLog") {
-      var sheetWealth = doc.getSheetByName("Wealth_Log"); 
-      if (!sheetWealth) {
-        return ContentService.createTextOutput(JSON.stringify({
-          "result": "error", 
-          "error": "Tab sheet Wealth_Log tidak ditemukan!"
-        })).setMimeType(ContentService.MimeType.JSON);
-      }
-      
-      // Memasukkan data ke baris paling bawah: Tanggal, Jenis, Jumlah, Catatan
-      sheetWealth.appendRow([
-        data.date, 
-        data.type, 
-        Number(data.amount), 
-        data.note
-      ]);
-      
-      return ContentService.createTextOutput(JSON.stringify({
-        "result": "success"
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
     function submitWealthLog() {
     try {
         let dateInput = document.getElementById("input-wealth-date");
