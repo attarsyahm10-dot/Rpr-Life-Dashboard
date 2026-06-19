@@ -1232,36 +1232,27 @@ function initWealthDate() {
 // Jalankan dengan jeda sedikit supaya HTML kamu selesai nge-render semua panel dulu
 setTimeout(initWealthDate, 500);
 
-function submitWealthLog() {
-    try {
-        let dateInput = document.getElementById("input-wealth-date");
-        let typeInput = document.getElementById("input-wealth-type");
-        let amountInput = document.getElementById("input-wealth-amount");
-        let noteInput = document.getElementById("input-wealth-note");
-
-        if (!dateInput || !amountInput || !noteInput) return;
-
-        let date = dateInput.value;
-        let type = typeInput.value;
-        let amount = amountInput.value;
-        let note = noteInput.value;
-
-        // Ganti dengan URL Apps Script asli kamu
-        fetch("URL_APPS_SCRIPT_KAMU", {
-            method: "POST",
-            body: JSON.stringify({date, type, amount, note})
-        }).then(() => {
-            alert("Data berhasil dicatat!");
-            // Form langsung otomatis bersih kembali
-            amountInput.value = "";
-            noteInput.value = "";
-        }).catch(err => {
-            console.error("Gagal mengirim data:", err);
-        });
-    } catch (error) {
-        console.error("Error pada submitWealthLog:", error);
+else if (data.action === "addWealthLog") {
+      var sheetWealth = doc.getSheetByName("Wealth_Log"); 
+      if (!sheetWealth) {
+        return ContentService.createTextOutput(JSON.stringify({
+          "result": "error", 
+          "error": "Tab sheet Wealth_Log tidak ditemukan!"
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+      
+      // Memasukkan data ke baris paling bawah: Tanggal, Jenis, Jumlah, Catatan
+      sheetWealth.appendRow([
+        data.date, 
+        data.type, 
+        Number(data.amount), 
+        data.note
+      ]);
+      
+      return ContentService.createTextOutput(JSON.stringify({
+        "result": "success"
+      })).setMimeType(ContentService.MimeType.JSON);
     }
-}
 </script>
 </body>
 </html>
